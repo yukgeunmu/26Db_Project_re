@@ -1233,6 +1233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartButton: {fileID: 199450095}
   exitButton: {fileID: 118397823}
+  scoreText: {fileID: 0}
+  bestScoreText: {fileID: 0}
 --- !u!1 &828311789
 GameObject:
   m_ObjectHideFlags: 0
