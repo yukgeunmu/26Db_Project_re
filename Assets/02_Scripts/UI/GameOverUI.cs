@@ -36,14 +36,6 @@ public class GameOverUI : BaseUI
     public void SetResultGameOverScore(int currentScore, int bestScore)
     {
         scoreText.text = currentScore.ToString();
-
-        if(bestScore < currentScore)
-        {
-            bestScore = currentScore;
-        }
-
-        PlayerPrefs.SetInt("BestScore", bestScore);
-
         bestScoreText.text = bestScore.ToString();
     }
 

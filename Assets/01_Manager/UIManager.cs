@@ -16,10 +16,11 @@ public class UIManager : MonoBehaviour
     public HomeUI homeUI;
     public GameUI gameUI;
     public GameOverUI gameOverUI;
-    int currentScore = GameManager.Instance.CurrentScore;
-    int bestScore = GameManager.Instance.BestScore;
-
     private UIState currentState;
+
+    private int currentScore;
+    private int bestScore;
+
 
     private void Awake()
     {
@@ -31,6 +32,12 @@ public class UIManager : MonoBehaviour
         gameOverUI.Init(this);
 
         ChangeState(UIState.Home);
+    }
+
+    private void Start()
+    {
+        currentScore = GameManager.Instance.CurrentScore;
+        bestScore = GameManager.Instance.BestScore;
     }
 
 

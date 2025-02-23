@@ -21,13 +21,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        uiManager = FindObjectOfType<UIManager>();
-
         if(Instance == null)
         {
             Instance = this;
         }
-        
+
+        uiManager = FindObjectOfType<UIManager>();
         bestScore = PlayerPrefs.GetInt(BestScoreKey,0);
     }
 
