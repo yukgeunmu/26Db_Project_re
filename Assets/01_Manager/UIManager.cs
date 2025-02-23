@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     public HomeUI homeUI;
     public GameUI gameUI;
     public GameOverUI gameOverUI;
+    int currentScore = GameManager.Instance.CurrentScore;
+    int bestScore = GameManager.Instance.BestScore;
 
     private UIState currentState;
 
@@ -40,6 +42,7 @@ public class UIManager : MonoBehaviour
     public void SetGameOver()
     {
         ChangeState(UIState.GameOver);
+        gameOverUI.SetResultGameOverScore(currentScore, bestScore);
     }
 
     public void ChangePlayerHP(float currentHP, float maxHP)

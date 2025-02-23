@@ -19,7 +19,7 @@ public class HomeUI : BaseUI
 
     public void OnClickStartButton()
     {
-        uiManager.SetPlayGame();
+        GameManager.Instance.StartGame();
     }
 
     public void OnClickExitButton()

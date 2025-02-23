@@ -33,10 +33,18 @@ public class GameOverUI : BaseUI
         Application.Quit();
     }
 
-    public void SetResultGameOverScore(int score, int bestScore)
+    public void SetResultGameOverScore(int currentScore, int bestScore)
     {
-        scoreText.text = score.ToString();
-        bestScoreText.text = score.ToString();
+        scoreText.text = currentScore.ToString();
+
+        if(bestScore < currentScore)
+        {
+            bestScore = currentScore;
+        }
+
+        PlayerPrefs.SetInt("BestScore", bestScore);
+
+        bestScoreText.text = bestScore.ToString();
     }
 
     protected override UIState GetUIstate()

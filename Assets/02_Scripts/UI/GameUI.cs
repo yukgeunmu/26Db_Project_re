@@ -34,15 +34,11 @@ public class GameUI : BaseUI
         hpSlider.value = percentage;
     }
 
-    public void SetScore(int currentScore, int _bestScore)
+    // 점수 업데이트
+    public void UpdateScore(int currentScore, int _bestScore)
     {
         scoreText.text = currentScore.ToString();
         bestScoreText.text = _bestScore.ToString();
-    }
-
-    public void UpdateScore(int currentScore)
-    {
-        scoreText.text = currentScore.ToString();
     }
 
 
