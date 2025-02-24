@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float musicVolume;
 
     private AudioSource musicAudioSource;
+    public AudioSource MusicAudioSource => musicAudioSource;
     public AudioClip musicClip;
 
     public SoundSource soundSourcePrefabs;
@@ -39,5 +40,10 @@ public class AudioManager : MonoBehaviour
         SoundSource obj = Instantiate(instance.soundSourcePrefabs);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
         soundSource.Play(clip, instance.soundEffectVolume, instance.soundEffectPitchVariance);
+    }
+
+    public void SetSoundEffectVolume(float _soundEffectVolule)
+    {
+        soundEffectVolume = _soundEffectVolule;
     }
 }

@@ -11,7 +11,10 @@ public class GameUI : BaseUI
     [SerializeField] private Text scoreText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private Button jumpButton;
-    [SerializeField] private Button slideButton; 
+    [SerializeField] private Button slideButton;
+
+    public AudioClip jumpSound;
+    public AudioClip slideSound;
 
     public override void Init(UIManager uIManager)
     {
@@ -44,12 +47,12 @@ public class GameUI : BaseUI
 
     public void OnClickJumpButton()
     {
-
+        AudioManager.PlayClip(jumpSound);
     }
 
     public void OnClickSlideButton()
     {
-
+        AudioManager.PlayClip(slideSound);
     }
 
 

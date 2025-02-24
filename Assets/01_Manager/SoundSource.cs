@@ -18,7 +18,7 @@ public class SoundSource : MonoBehaviour
         _audioSource.Play();
         _audioSource.pitch = Mathf.Clamp(1f + UnityEngine.Random.Range(-soundEffectPitchVariance, soundEffectPitchVariance), 0.5f, 2.0f);
 
-        Invoke(nameof(Disable), clip.length +2);        
+        Invoke(nameof(Disable), clip.length +1);        
     }
 
     public void Disable()
