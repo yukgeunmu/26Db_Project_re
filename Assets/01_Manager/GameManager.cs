@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     private UIManager uiManager;
 
+    public AudioClip gameClip1;
+
     // 현재 점수
     private int currentscore = 0;
     public int CurrentScore => currentscore;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         uiManager.SetPlayGame();
+        AudioManager.instance.ChangeBackGroundMusic(gameClip1);
     }
 
     // 게임오버 메서드

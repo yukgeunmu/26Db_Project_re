@@ -8,6 +8,8 @@ public class HomeUI : BaseUI
     [SerializeField] private Button startButton;
     [SerializeField] private Button exitButton;
 
+    public AudioClip ButtonClick;
+
     public override void Init(UIManager uIManager)
     {
         base.Init(uIManager);
@@ -20,6 +22,7 @@ public class HomeUI : BaseUI
     public void OnClickStartButton()
     {
         GameManager.Instance.StartGame();
+        AudioManager.PlayClip(ButtonClick);
     }
 
     public void OnClickExitButton()
@@ -29,6 +32,7 @@ public class HomeUI : BaseUI
 #else
         Application.Quit();
 #endif
+        AudioManager.PlayClip(ButtonClick);
 
     }
 
