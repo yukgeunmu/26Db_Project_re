@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HomeUI : BaseUI
 {
@@ -13,8 +14,14 @@ public class HomeUI : BaseUI
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Button rightButton;
+    [SerializeField] private Button leftButton;
+    [SerializeField] private GameObject righSelct;
+    [SerializeField] private GameObject leftSelect;
 
-    public AudioClip ButtonClick;
+    public AudioClip ButtonClip;
+
+    
 
     public override void Init(UIManager uIManager)
     {
@@ -26,12 +33,14 @@ public class HomeUI : BaseUI
         offOptionButton.onClick.AddListener(OnClikOffOptionPanel);
         bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        rightButton.onClick.AddListener(OnClickRightButton);
+        leftButton.onClick.AddListener(OnClickLeftButton);
     }
 
     public void OnClickStartButton()
     {
-        GameManager.Instance.StartGame();
-        AudioManager.PlayClip(ButtonClick);
+        uiManager.SetPlayGame();
+        AudioManager.PlayClip(ButtonClip);
     }
 
     public void OnClickExitButton()
@@ -41,18 +50,20 @@ public class HomeUI : BaseUI
 #else
         Application.Quit();
 #endif
-        AudioManager.PlayClip(ButtonClick);
+        AudioManager.PlayClip(ButtonClip);
 
     }
 
     public void OnClickOpenOptionPanel()
     {
         optionPanel.SetActive(true);
+        AudioManager.PlayClip(ButtonClip);
     }
 
     public void OnClikOffOptionPanel()
     {
         optionPanel.SetActive(false);
+        AudioManager.PlayClip(ButtonClip);
     }
 
     public void SetBGMVolume(float value)
@@ -63,6 +74,39 @@ public class HomeUI : BaseUI
     public void SetSFXVolume(float value)
     {
         AudioManager.instance.SetSoundEffectVolume(value);
+    }
+
+    public float MiddlePoint()
+    {
+        float x_spot;
+        x_spot = (uiManager.gameUI.JumpButton.transform.position.x + uiManager.gameUI.SlideButton.transform.position.x) / 2.0f;
+
+        return x_spot;
+    }
+
+
+    public void OnClickRightButton()
+    {    
+        if(uiManager.gameUI.JumpButton.transform.position.x < MiddlePoint())
+        {      
+            uiManager.ChangeButton();
+            righSelct.SetActive(true);
+            leftSelect.SetActive(false);
+            AudioManager.PlayClip(ButtonClip);
+        }
+           
+    }
+
+    public void OnClickLeftButton()
+    {
+        if(uiManager.gameUI.JumpButton.transform.position.x > MiddlePoint())
+        {
+            uiManager.ChangeButton();
+            righSelct.SetActive(false);
+            leftSelect.SetActive(true);
+            AudioManager.PlayClip(ButtonClip);
+        }
+           
     }
 
     protected override UIState GetUIstate()

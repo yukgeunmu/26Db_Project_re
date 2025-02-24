@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class GameUI : BaseUI
@@ -11,10 +12,15 @@ public class GameUI : BaseUI
     [SerializeField] private Text scoreText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private Button jumpButton;
+    public Button JumpButton => jumpButton;
     [SerializeField] private Button slideButton;
+    public Button SlideButton => slideButton;
 
     public AudioClip jumpSound;
     public AudioClip slideSound;
+
+    
+
 
     public override void Init(UIManager uIManager)
     {
@@ -53,6 +59,13 @@ public class GameUI : BaseUI
     public void OnClickSlideButton()
     {
         AudioManager.PlayClip(slideSound);
+    }
+
+    public void ChangeJumpButton()
+    {
+        Vector3 temptPosition = jumpButton.transform.position;
+        jumpButton.transform.position = slideButton.transform.position;
+        slideButton.transform.position = temptPosition;
     }
 
 

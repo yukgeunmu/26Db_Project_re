@@ -26,9 +26,14 @@ public class GameManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else if(Instance != null)
+        {
+            Destroy(this.gameObject);
         }
 
-        uiManager = FindObjectOfType<UIManager>();
+            uiManager = FindObjectOfType<UIManager>();
         bestScore = PlayerPrefs.GetInt(BestScoreKey,0);
     }
 

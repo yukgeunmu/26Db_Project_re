@@ -25,7 +25,7 @@ public class GameOverUI : BaseUI
 
     public void OnClickRestartButton()
     {
-        uiManager.SetPlayGame();
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OnClickExitButton()

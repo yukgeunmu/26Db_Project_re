@@ -6,7 +6,8 @@ public enum UIState
 {
     Home,
     Game,
-    GameOver
+    GameOver,
+    Stage
 }
 
 
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
     public HomeUI homeUI;
     public GameUI gameUI;
     public GameOverUI gameOverUI;
+    public StageUI stageUI;
     private UIState currentState;
 
     private int currentScore;
@@ -26,10 +28,14 @@ public class UIManager : MonoBehaviour
     {
         homeUI = GetComponentInChildren<HomeUI>(true);
         homeUI.Init(this);
-        gameUI = GetComponentInChildren<GameUI>(true);
-        gameUI.Init(this);
-        gameOverUI = GetComponentInChildren<GameOverUI>(true);
-        gameOverUI.Init(this);
+        if (TryGetComponentInChildren<GameUI>(out gameUI))
+            gameUI.Init(this);
+
+        if (TryGetComponentInChildren<GameOverUI>(out gameOverUI))
+            gameOverUI.Init(this);
+
+        stageUI = GetComponentInChildren<StageUI>(true);
+        stageUI.Init(this);
 
         ChangeState(UIState.Home);
     }
@@ -61,8 +67,25 @@ public class UIManager : MonoBehaviour
     {
         currentState = state;
         homeUI.SetActive(currentState);
-        gameUI.SetActive(currentState);
-        gameOverUI.SetActive(currentState);
+
+        if(gameUI != null)
+            gameUI.SetActive(currentState);
+        if(gameOverUI != null)
+            gameOverUI.SetActive(currentState);
+
+        stageUI.SetActive(currentState);
+  
+    }
+
+    public void ChangeButton()
+    {
+        gameUI.ChangeJumpButton();       
+    }
+
+    private bool TryGetComponentInChildren<T>(out T component) where T : MonoBehaviour
+    {
+        component = GetComponentInChildren<T>(true);
+        return component != null;
     }
 
 
