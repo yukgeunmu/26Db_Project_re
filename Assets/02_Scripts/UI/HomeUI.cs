@@ -39,7 +39,7 @@ public class HomeUI : BaseUI
 
     public void OnClickStartButton()
     {
-        uiManager.SetPlayGame();
+        GameManager.Instance.StartGame();
         AudioManager.PlayClip(ButtonClip);
     }
 
