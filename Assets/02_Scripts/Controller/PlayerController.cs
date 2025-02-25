@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PlayerController : BaseCharacterController
 {
-    private Camera camera;
+    private Camera followCam;
 
     protected void Start()
     {
-        camera = Camera.main;
+        followCam = Camera.main;
         movementDirection = Vector2.right * resourceController.MaxInitialVelocity;
     }
 
     protected override void Update()
     {
         base.Update();
-        camera.transform.position = new Vector3(transform.position.x, transform.position.y, camera.transform.position.z);
+        followCam.transform.position = new Vector3(transform.position.x, transform.position.y, followCam.transform.position.z);
     }
 
     protected override void HandleAction()
