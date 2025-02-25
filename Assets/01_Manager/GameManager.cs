@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
 
     private UIManager uiManager;
 
+    public ResourceController resourceController = null;
+
+    public StageManager stageManager = null;
+
     public AudioClip gameClip1;
 
     // 현재 점수
@@ -25,6 +29,7 @@ public class GameManager : MonoBehaviour
     //최고 점수 키
     public const string BestScoreKey = "BestScore";
 
+    // 획득한 코인 키
     public const string CoinKey = "AcquireCoin";
 
     private void Awake()
@@ -39,11 +44,25 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-            uiManager = FindObjectOfType<UIManager>();
+        uiManager = FindObjectOfType<UIManager>();
+        resourceController = FindObjectOfType<ResourceController>();
+        stageManager = FindObjectOfType<StageManager>();
         bestScore = PlayerPrefs.GetInt(BestScoreKey,0);
         coin = PlayerPrefs.GetInt(CoinKey, 0);
     }
 
+
+    private void Start()
+    {
+        //StartCoroutine(IncreaseSpeedOverTime(2f));
+    }
+
+    private void Update()
+    {
+        Debug.Log("CurrentTerminalVelocity: " + resourceController.CurrentTerminalVelocity);
+        Debug.Log("MaxVelocity: " + resourceController.MaxVelocity);
+
+    }
 
     // 게임 시작 메서드
     public void StartGame()
@@ -71,10 +90,20 @@ public class GameManager : MonoBehaviour
         uiManager.gameUI.UpdateScore(currentscore, bestScore);
     }
 
-    public void AddCoint(int _coin)
+    public void AddCoin(int _coin)
     {
         coin += _coin;
         uiManager.gameUI.AcquireCoin(coin);
     }
+
+    // 일정시간 지나면 장애물 생성이나 시간 변경하는 메서드
+    private IEnumerator IncreaseObstacleSpeedOverTime(float interval)
+    {
+        while (true)  // 무한 반복 (게임이 끝나면 중지)
+        {
+            yield return new WaitForSeconds(interval);  // 일정 시간 대기
+        }
+    }
+
 
 }
