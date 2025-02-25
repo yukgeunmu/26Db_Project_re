@@ -330,19 +330,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds:
-  - {fileID: 2335887078958912397, guid: 6f4e87daf0b3aa14e9af6a2efd41e399, type: 3}
-  - {fileID: 9178757245593967538, guid: 2263dbcf41ecc80409c2df62675da219, type: 3}
-  - {fileID: 5012153041753279592, guid: fe157eaf28bc5ff4b9c8f8d4129354d4, type: 3}
-  - {fileID: 4155140047273197348, guid: 6d0e041454fb8934492f10cd61f9e114, type: 3}
-  - {fileID: 7911474265370651703, guid: a5db88f80df80f34ab2d638408f63ad9, type: 3}
-  - {fileID: 5595280384264732317, guid: 713d0167e691fc04aae7b600f3fd9d52, type: 3}
+  - {fileID: 8696958054640727118, guid: 4e5e5c6b09894e7449e39aa7d0472698, type: 3}
+  - {fileID: 7262592257171342665, guid: 330ccc609ed611c479b0b447671df33b, type: 3}
   fadeImage: {fileID: 1168836120}
   fadeSpeed: 0.05
-  elements:
-  - {fileID: 0}
-  speeds: []
-  resetPositionX: 10
-  startPositionX: 0
+  resetPositionX: -10
+  startPositionX: 10
+  maxRepeats: 3
 --- !u!4 &1259196027
 Transform:
   m_ObjectHideFlags: 0

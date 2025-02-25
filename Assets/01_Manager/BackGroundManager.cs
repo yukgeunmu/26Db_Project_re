@@ -13,12 +13,14 @@ public class StageManager : MonoBehaviour
     [Header("배경 오브젝트 이동 (구름, 산, 땅)")]
     public float resetPositionX; // 왼쪽 끝으로 이동 시 리셋할 위치
     public float startPositionX; // 오른쪽에서 새롭게 시작할 위치
+    public int maxRepeats = 5; // 각 배경이 반복되는 최대 횟수
 
     private GameObject currentBackground; // 현재 배경 오브젝트 (부모)
     private List<Transform> clouds = new List<Transform>(); // 구름 리스트
     private List<Transform> mountains = new List<Transform>(); // 산 리스트
     private List<Transform> ground = new List<Transform>(); // 땅 리스트
     private int currentStage = 0; // 현재 스테이지 번호
+    private int repeatCount = 0; // 현재 배경 반복 횟수
 
     void Start()
     {
@@ -55,6 +57,7 @@ public class StageManager : MonoBehaviour
         }
         currentBackground = Instantiate(backgrounds[newStage], Vector3.zero, Quaternion.identity);
         currentStage = newStage;
+        repeatCount = 0; // 새로운 배경이 생성될 때 반복 횟수 초기화
 
         // 3. 새 배경의 자식 오브젝트를 자동으로 가져옴
         AssignBackgroundElements();
@@ -99,6 +102,17 @@ public class StageManager : MonoBehaviour
             if (element.position.x <= resetPositionX)
             {
                 element.position = new Vector3(startPositionX, element.position.y, element.position.z);
+                
+                // 한 번의 반복이 완료될 때마다 카운트 증가
+                if (elements == ground) // 바닥이 한 번 순환될 때 기준으로 체크
+                {
+                    repeatCount++;
+                    if (repeatCount >= maxRepeats)
+                    {
+                        int nextStage = (currentStage + 1) % backgrounds.Length; // 다음 스테이지로 변경
+                        ChangeStage(nextStage);
+                    }
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6509696994158654684}
   - component: {fileID: 3798611992319836944}
   m_Layer: 0
-  m_Name: Midcloud
+  m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7582069218427862588}
   - component: {fileID: 2238836421910975838}
   m_Layer: 0
-  m_Name: Rightcloud
+  m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 6996907294000954439}
   - component: {fileID: 4793086553966612794}
   m_Layer: 0
-  m_Name: Leftcloud
+  m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
