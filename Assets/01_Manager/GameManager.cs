@@ -18,8 +18,14 @@ public class GameManager : MonoBehaviour
     private int bestScore = 0;
     public int BestScore => bestScore;
 
+    // 코인
+    private int coin;
+    public int Coin => coin;
+
     //최고 점수 키
     public const string BestScoreKey = "BestScore";
+
+    public const string CoinKey = "AcquireCoin";
 
     private void Awake()
     {
@@ -35,8 +41,11 @@ public class GameManager : MonoBehaviour
 
             uiManager = FindObjectOfType<UIManager>();
         bestScore = PlayerPrefs.GetInt(BestScoreKey,0);
+        coin = PlayerPrefs.GetInt(CoinKey, 0);
     }
 
+
+    // 게임 시작 메서드
     public void StartGame()
     {
         uiManager.SetPlayGame();
@@ -60,6 +69,12 @@ public class GameManager : MonoBehaviour
     {
         currentscore += score;
         uiManager.gameUI.UpdateScore(currentscore, bestScore);
+    }
+
+    public void AddCoint(int _coin)
+    {
+        coin += _coin;
+        uiManager.gameUI.AcquireCoin(coin);
     }
 
 }

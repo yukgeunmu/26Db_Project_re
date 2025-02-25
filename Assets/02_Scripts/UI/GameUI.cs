@@ -50,6 +50,12 @@ public class GameUI : BaseUI
         bestScoreText.text = _bestScore.ToString();
     }
 
+    // 코인 업데이트
+    public void AcquireCoin(int coin)
+    {
+        coinText.text = coin.ToString();
+    }
+
 
     public void OnClickJumpButton()
     {
