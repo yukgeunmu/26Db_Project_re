@@ -12,8 +12,8 @@ public class StageManager : MonoBehaviour
 
     [Header("배경 오브젝트 이동 (구름, 산, 땅)")]
     public float resetPositionX = -20f; // 왼쪽 끝으로 이동 시 리셋할 위치
-    public float startPositionX = 10f; // 오른쪽에서 새롭게 시작할 위치
-    public int maxRepeats = 3; // 각 배경이 반복되는 최대 횟수
+    public float startPositionX = 20f; // 오른쪽에서 새롭게 시작할 위치
+    public int maxRepeats = 1; // 각 배경이 반복되는 최대 횟수
 
     private GameObject currentBackground; // 현재 배경 오브젝트 (부모)
     private List<Transform> clouds = new List<Transform>(); // 구름 리스트
@@ -42,6 +42,8 @@ public class StageManager : MonoBehaviour
 
     private IEnumerator FadeTransition(int newStage)
     {
+        Debug.Log($"페이드 아웃 시작, 변경할 배경: {newStage}");
+
         // 1. 페이드 아웃 (화면이 점점 어두워짐)
         for (float i = 0; i <= 1; i += fadeSpeed)
         {
@@ -52,25 +54,29 @@ public class StageManager : MonoBehaviour
         // 2. 기존 배경 삭제 후 새로운 배경 생성
         if (currentBackground != null)
         {
+            Debug.Log($"삭제 전 배경: {currentBackground.name}");
             Destroy(currentBackground);
         }
 
+        // 3. 새로운 배경 생성
         currentBackground = Instantiate(backgrounds[newStage], Vector3.zero, Quaternion.identity);
-        currentBackground.transform.position = new Vector3(0, 0, 0); // 위치 고정
+        currentBackground.transform.position = new Vector3(0, 0, 0);
         Debug.Log($"새로운 배경 생성: {currentBackground.name}");
 
         currentStage = newStage;
         repeatCount = 0; // 반복 횟수 초기화
 
-        // 3. 새 배경의 자식 오브젝트를 자동으로 가져옴
+        // 4. 새 배경의 자식 오브젝트를 자동으로 가져옴
         AssignBackgroundElements();
 
-        // 4. 페이드 인 (화면이 점점 밝아짐)
+        // 5. 페이드 인 (화면이 점점 밝아짐)
         for (float i = 1; i >= 0; i -= fadeSpeed)
         {
             fadeImage.color = new Color(0, 0, 0, i);
             yield return new WaitForSeconds(fadeSpeed);
         }
+
+        Debug.Log($"스테이지 변경 완료: {currentStage}");
     }
 
     // **부모 배경(기본 바탕)의 자식 오브젝트(구름, 산, 땅)를 자동 할당**
@@ -105,7 +111,7 @@ public class StageManager : MonoBehaviour
             {
                 elements[i].position = new Vector3(startPositionX, elements[i].position.y, elements[i].position.z);
 
-                // **땅(Ground)이 한 번 왼쪽 끝까지 이동했을 때 카운트 증가**
+                // **구름이 한 번 왼쪽 끝까지 이동했을 때 카운트 증가**
                 if (elements == clouds)
                 {
                     repeatCount++;
@@ -113,8 +119,9 @@ public class StageManager : MonoBehaviour
 
                     if (repeatCount >= maxRepeats)
                     {
+                        // ✅ **다음 배경으로 이동**
                         int nextStage = (currentStage + 1) % backgrounds.Length;
-                        Debug.Log($"스테이지 변경: {currentStage} → {nextStage}");
+                        Debug.Log($"배경 변경: {currentStage} → {nextStage}");
                         ChangeStage(nextStage);
                     }
                 }
