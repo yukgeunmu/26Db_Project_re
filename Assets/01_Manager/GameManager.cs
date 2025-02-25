@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        //ResetButtonPositions();  // 리셋
+
         //uiManager = FindObjectOfType<UIManager>();
         //resourceController = FindObjectOfType<ResourceController>();
         //stageManager = FindObjectOfType<StageManager>();
@@ -65,7 +67,10 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        StartCoroutine(TimeDamageLoop());
+        if(resourceController != null)
+            StartCoroutine(TimeDamageLoop());
+
+
     }
 
 
@@ -119,6 +124,12 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);  // 일정 시간 대기
         }
+    }
+
+    public void ResetButtonPositions()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
 
 

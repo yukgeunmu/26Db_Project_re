@@ -16,6 +16,9 @@ public class GameUI : BaseUI
     [SerializeField] private Button slideButton;
     public Button SlideButton => slideButton;
 
+    public RectTransform jumpRect;
+    public RectTransform slideRect;
+
     public AudioClip jumpSound;
     public AudioClip slideSound;
 
@@ -31,6 +34,10 @@ public class GameUI : BaseUI
         bestScoreText = transform.Find("BestScoreText").GetComponent<Text>();
         jumpButton.onClick.AddListener(OnClickJumpButton);
         slideButton.onClick.AddListener(OnClickSlideButton);
+
+        jumpRect = jumpButton.GetComponent<RectTransform>();
+        slideRect = slideButton.GetComponent<RectTransform>();
+
     }
 
     private void Start()
@@ -69,9 +76,10 @@ public class GameUI : BaseUI
 
     public void ChangeJumpButton()
     {
-        Vector3 temptPosition = jumpButton.transform.position;
-        jumpButton.transform.position = slideButton.transform.position;
-        slideButton.transform.position = temptPosition;
+
+        Vector2 tempPosition = jumpRect.anchoredPosition;
+        jumpRect.anchoredPosition= slideRect.anchoredPosition;
+        slideRect.anchoredPosition = tempPosition;
 
         PlayerPrefs.SetFloat("JumpButtonX", jumpButton.transform.position.x);
         PlayerPrefs.SetFloat("JumpButtonY", jumpButton.transform.position.y);
@@ -103,6 +111,11 @@ public class GameUI : BaseUI
         }
     }
 
+    public void ResetButtonPositions()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+    }
 
     protected override UIState GetUIstate()
     {

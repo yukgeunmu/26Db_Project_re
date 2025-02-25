@@ -98,7 +98,7 @@ public class HomeUI : BaseUI
 
     public void OnClickRightButton()
     {    
-        if(uiManager.gameUI.JumpButton.transform.position.x < MiddlePoint())
+        if(uiManager.gameUI.jumpRect.anchoredPosition.x < 0)
         {      
             uiManager.ChangeButton();
             righSelct.SetActive(true);
@@ -110,7 +110,7 @@ public class HomeUI : BaseUI
 
     public void OnClickLeftButton()
     {
-        if(uiManager.gameUI.JumpButton.transform.position.x > MiddlePoint())
+        if(uiManager.gameUI.jumpRect.anchoredPosition.x > 0)
         {
             uiManager.ChangeButton();
             righSelct.SetActive(false);
