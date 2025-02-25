@@ -35,7 +35,7 @@ public class GameUI : BaseUI
 
     private void Start()
     {
-        UpdateHPSlider(1);     
+        UpdateHPSlider(1); 
     }
 
     public void UpdateHPSlider(float percentage)

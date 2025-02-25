@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     public StageManager stageManager = null;
 
     public static bool isFirstSet = true;
+
+    [SerializeField][Range(0f, 1f)] private float timeDamage = 1f;
 
     public AudioClip gameClip1;
 
@@ -60,6 +63,11 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void Start()
+    {
+        StartCoroutine(TimeDamageLoop());
+    }
+
 
     // 게임 시작 메서드
     public void StartGame()
@@ -92,6 +100,17 @@ public class GameManager : MonoBehaviour
         coin += _coin;
         uiManager.gameUI.AcquireCoin(coin);
     }
+
+    private IEnumerator TimeDamageLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            resourceController.ChangeHealth(-timeDamage);
+            uiManager.gameUI.UpdateHPSlider(resourceController.CurrentHealth/resourceController.MaxHealth);
+        }
+    }
+
 
     // 일정시간 지나면 장애물 생성이나 시간 변경하는 메서드
     private IEnumerator IncreaseObstacleSpeedOverTime(float interval)
