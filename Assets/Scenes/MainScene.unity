@@ -157,6 +157,7 @@ MonoBehaviour:
   stageManager: {fileID: 0}
   timeDamage: 0.5
   gameClip1: {fileID: 8300000, guid: fc5af015011ea3745b7f78ea1dd1049f, type: 3}
+  ResetKey: 0
 --- !u!4 &306163373
 Transform:
   m_ObjectHideFlags: 0

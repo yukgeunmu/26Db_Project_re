@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public AudioClip gameClip1;
 
+    public bool ResetKey = false;
+
     // 현재 점수
     private int currentscore = 0;
     public int CurrentScore => currentscore;
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        //ResetButtonPositions();  // 리셋
+        if(ResetKey) ResetButtonPositions();
 
         //uiManager = FindObjectOfType<UIManager>();
         //resourceController = FindObjectOfType<ResourceController>();
