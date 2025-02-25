@@ -57,12 +57,6 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(IncreaseSpeedOverTime(2f));
     }
 
-    private void Update()
-    {
-        Debug.Log("CurrentTerminalVelocity: " + resourceController.CurrentTerminalVelocity);
-        Debug.Log("MaxVelocity: " + resourceController.MaxVelocity);
-
-    }
 
     // 게임 시작 메서드
     public void StartGame()
