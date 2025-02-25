@@ -295,7 +295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5306844679716428660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -339,6 +339,7 @@ MonoBehaviour:
   exitButton: {fileID: 4982748996658238395}
   scoreText: {fileID: 0}
   bestScoreText: {fileID: 0}
+  ButtonClip: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
 --- !u!1 &1569612080291206868
 GameObject:
   m_ObjectHideFlags: 0

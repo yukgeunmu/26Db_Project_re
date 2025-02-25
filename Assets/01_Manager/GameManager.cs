@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private UIManager uiManager;
+    public UIManager uiManager;
 
     public ResourceController resourceController = null;
 
     public StageManager stageManager = null;
+
+    public static bool isFirstSet = true;
 
     public AudioClip gameClip1;
 
@@ -38,24 +41,24 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // 이벤트 구독
         }
         else if(Instance != null)
         {
             Destroy(this.gameObject);
         }
 
-        uiManager = FindObjectOfType<UIManager>();
-        resourceController = FindObjectOfType<ResourceController>();
-        stageManager = FindObjectOfType<StageManager>();
+        //uiManager = FindObjectOfType<UIManager>();
+        //resourceController = FindObjectOfType<ResourceController>();
+        //stageManager = FindObjectOfType<StageManager>();
+
         bestScore = PlayerPrefs.GetInt(BestScoreKey,0);
         coin = PlayerPrefs.GetInt(CoinKey, 0);
+
+        // 초기 로드 시에도 참조 설정
+        FindAndSetManagers();
     }
 
-
-    private void Start()
-    {
-        //StartCoroutine(IncreaseSpeedOverTime(2f));
-    }
 
 
     // 게임 시작 메서드
@@ -97,6 +100,24 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);  // 일정 시간 대기
         }
+    }
+
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // 이벤트 구독 해제
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        FindAndSetManagers();
+    }
+
+    private void FindAndSetManagers()
+    {
+        uiManager = FindObjectOfType<UIManager>();
+        resourceController = FindObjectOfType<ResourceController>();
+        stageManager = FindObjectOfType<StageManager>();
     }
 
 
