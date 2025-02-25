@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed26367821fd36b4ca3e6259b740cb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
   resourceController: {fileID: 0}
   stageManager: {fileID: 0}
   gameClip1: {fileID: 8300000, guid: fc5af015011ea3745b7f78ea1dd1049f, type: 3}
@@ -733,38 +734,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HomeUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2861562657798721655, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2937287282534259262, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2937287282534259262, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317765933597505789, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4317765933597505789, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123622073523462987, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123622073523462987, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123622073523462987, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7564010590893263175, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -844,22 +813,6 @@ PrefabInstance:
     - target: {fileID: 7564010590893263175, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8391755403954219026, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8391755403954219026, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8391755403954219026, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9151452916230395097, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -72,6 +72,35 @@ public class GameUI : BaseUI
         Vector3 temptPosition = jumpButton.transform.position;
         jumpButton.transform.position = slideButton.transform.position;
         slideButton.transform.position = temptPosition;
+
+        PlayerPrefs.SetFloat("JumpButtonX", jumpButton.transform.position.x);
+        PlayerPrefs.SetFloat("JumpButtonY", jumpButton.transform.position.y);
+        PlayerPrefs.SetFloat("JumpButtonZ", jumpButton.transform.position.z);
+
+        PlayerPrefs.SetFloat("SlideButtonX", slideButton.transform.position.x);
+        PlayerPrefs.SetFloat("SlideButtonY", slideButton.transform.position.y);
+        PlayerPrefs.SetFloat("SlideButtonZ", slideButton.transform.position.z);
+
+        PlayerPrefs.Save();
+    }
+
+    public void LoadButtonPositions()
+    {
+        // 저장된 값이 있는지 확인 후 불러오기
+        if (PlayerPrefs.HasKey("JumpButtonX"))
+        {
+            jumpButton.transform.position = new Vector3(
+                PlayerPrefs.GetFloat("JumpButtonX"),
+                PlayerPrefs.GetFloat("JumpButtonY"),
+                PlayerPrefs.GetFloat("JumpButtonZ")
+            );
+
+            slideButton.transform.position = new Vector3(
+                PlayerPrefs.GetFloat("SlideButtonX"),
+                PlayerPrefs.GetFloat("SlideButtonY"),
+                PlayerPrefs.GetFloat("SlideButtonZ")
+            );
+        }
     }
 
 

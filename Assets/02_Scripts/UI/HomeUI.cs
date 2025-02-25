@@ -57,6 +57,17 @@ public class HomeUI : BaseUI
     public void OnClickOpenOptionPanel()
     {
         optionPanel.SetActive(true);
+        float x_Jump = PlayerPrefs.GetFloat("JumpButtonX");
+        if (x_Jump > MiddlePoint())
+        {
+            righSelct.SetActive(true);
+            leftSelect.SetActive(false);
+        }
+        else
+        {
+            righSelct.SetActive(false);
+            leftSelect.SetActive(true);
+        }
         AudioManager.PlayClip(ButtonClip);
     }
 

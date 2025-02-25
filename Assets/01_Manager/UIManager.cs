@@ -46,11 +46,13 @@ public class UIManager : MonoBehaviour
         if (GameManager.isFirstSet)
         {
             ChangeState(UIState.Home);
+            gameUI.LoadButtonPositions();
             GameManager.isFirstSet = false;
         }
         else
         {
             GameManager.Instance.StartGame();
+            gameUI.LoadButtonPositions();
         }
 
         currentScore = GameManager.Instance.CurrentScore;
