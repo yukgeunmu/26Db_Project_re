@@ -45,7 +45,7 @@ public class HomeUI : BaseUI
 
     public void OnClickExitButton()
     {
-#if UNITY_EDITER
+#if UNITY_EDITOR
     UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
