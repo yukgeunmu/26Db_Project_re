@@ -4,35 +4,37 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    public GameObject obstaclePrefeb;
-    public Vector2 spawnAreaMin = new Vector2(-5, 5); // X&Y축 최소 위치
-    public Vector2 spawnAreaMax = new Vector2(5, 5); // X&Y 최대 위치
-    public float minSpawnInterval = 1.0f; // 최소 생성 간격
-    public float maxSpawnInterval = 1.0f; // 최대 생성 간격
+    public float highPosY = 1f; // 최대높이
+    public float lowPosY = -1f; // 최저높이
+    public float longPosX = 2f; // 최대길이
+    public float shortPosX = 2f; // 최저길이
+    public ResourceController resourceController;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(SpawnObstacles());
-    }
+    public Transform obstacle;
 
-    IEnumerator SpawnObstacles()
+    /*public Vector2 SetRandomPlace(Vector2 lastPositon, int obstacleCount)
     {
-        while (true)
-        {
-            SpawnObstacles();
-            float randomInterval = Random.Range(minSpawnInterval, maxSpawnInterval); // 랜덤 간격
-            yield return new WaitForSeconds(randomInterval);
+        float PosX = Random.Range(longPosX, shortPosX); // longPos와 shortPos의 범위에서 랜덤값 부여
+        float PosY = Random.Range(highPosY, lowPosY); // highPos와 lowPos의 범위에서 랜덤값 부여
+
+        Vector2 placePosition = lastPositon + new Vector2(PosX, PosY);
+        
+        transform.position = placePosition;
+
+        return placePosition;
+    }*/
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        { 
+            resourceController = GetComponent<ResourceController>();
+
+            if (resourceController.CurrentHealth >= 0)
+            {
+                resourceController.ChangeHealth(-10);
+            }
         }
     }
-
-    // Update is called once per frame
-    void SpawnObject()
-    {
-        Vector2 randomPosition = new Vector2(Random.Range(spawnAreaMin.x, spawnAreaMax.x), Random.Range(spawnAreaMin.y, spawnAreaMax.y));
-    }
-
-    //Vector3 spawnPosition = new Vector3(randomPosition2D.x, randomPosition2D.y, 0);
-
-    //Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
 }
