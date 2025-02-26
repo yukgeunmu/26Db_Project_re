@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2679228709089957727}
   - component: {fileID: 4022610108956036966}
   - component: {fileID: 9131150265096509510}
+  - component: {fileID: 7739486407571918195}
   m_Layer: 6
   m_Name: Monsters_6
   m_TagString: Obstacle
@@ -73,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1704883839
+  m_SortingLayer: 2
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300012, guid: 335902fb5fba74948823671b7c9ea1d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -171,3 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d64daa9488955448d183a389384804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7739486407571918195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877399995518758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592a2fc6c1884ba48ae2e342532b6e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5

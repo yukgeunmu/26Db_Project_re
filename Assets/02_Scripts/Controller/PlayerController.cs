@@ -26,14 +26,14 @@ public class PlayerController : BaseCharacterController
         BoxCollider2D box = GetComponent<BoxCollider2D>();
         originalBoxColliderOffset = box.offset;
         originalBoxColliderSize = box.size;
-        followCamY = transform.position.y + 1;
+        followCamY = transform.position.y;
     }
 
     protected override void Update()
     {
         base.Update();
         if(!resourceController.CameraDoNotFollow)
-            followCam.transform.position = new Vector3(transform.position.x + 3, followCamY, followCam.transform.position.z);
+            followCam.transform.position = new Vector3(transform.position.x, followCamY, followCam.transform.position.z);
 
         if(!resourceController.DoNotJump)
         {
