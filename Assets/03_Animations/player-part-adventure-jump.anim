@@ -39,15 +39,6 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 2fe9361b923b1cd40acc1e00af0785c0, type: 3}
-    attribute: m_Sprite
-    path: Scar fSprite
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
-  - serializedVersion: 2
-    curve:
-    - time: 0
       value: {fileID: 21300000, guid: 5a41e8307724ee643b62a12d406c1bcb, type: 3}
     attribute: m_Sprite
     path: ArmorSprite
@@ -60,6 +51,15 @@ AnimationClip:
       value: {fileID: 21300000, guid: 10470973efac5d242aca195dd1e095ef, type: 3}
     attribute: m_Sprite
     path: FrameSprite
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 2fe9361b923b1cd40acc1e00af0785c0, type: 3}
+    attribute: m_Sprite
+    path: ScarfSprite
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -89,15 +89,6 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2333411893
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
       path: 3533577355
       attribute: 0
       script: {fileID: 0}
@@ -115,12 +106,21 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 2121524324
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: 21300000, guid: e0836b797c728eb4b9f34b45177d02eb, type: 3}
     - {fileID: 21300000, guid: 41aa3c7441c7bb84990a7631dea04837, type: 3}
-    - {fileID: 21300000, guid: 2fe9361b923b1cd40acc1e00af0785c0, type: 3}
     - {fileID: 21300000, guid: 5a41e8307724ee643b62a12d406c1bcb, type: 3}
     - {fileID: 21300000, guid: 10470973efac5d242aca195dd1e095ef, type: 3}
+    - {fileID: 21300000, guid: 2fe9361b923b1cd40acc1e00af0785c0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

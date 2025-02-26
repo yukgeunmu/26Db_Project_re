@@ -13,38 +13,16 @@ public class StatHandler : MonoBehaviour
     [SerializeField][Range(0f, 10f)] private float maxTerminalVelocity = 1f;
 
     [Header("Jump")]
-    [SerializeField][Range(0f, 10f)] private float maxInitialJumpPower = 1f;
-    [SerializeField][Range(0f, 10f)] private float maxJumpPower = 1f;
-    public float MaxHealth
-    {
-        get => maxHealth;
-        set => maxHealth = Mathf.Clamp(value, 0f, 100f);
-    }
-    public float MaxInitialVelocity
-    { 
-        get => maxInitialVelocity;
-        set => maxInitialVelocity = Mathf.Clamp(value, 0f, 100f);
-    }
-    public float MaxVelocity
-    {
-        get => maxVelocity;
-        set => maxVelocity = Mathf.Clamp(value, 0f, 10f);
-    }
-
-    public float MaxTerminalVelocity
-    {
-        get => maxTerminalVelocity;
-        set => maxTerminalVelocity = Mathf.Clamp(value, 0f, 10f);
-    }
-
-    public float MaxInitialJumpPower
-    {
-        get => maxInitialJumpPower;
-        set => maxInitialJumpPower = Mathf.Clamp(value, 0f, 10f);
-    }
-    public float MaxJumpPower
-    {
-        get => maxJumpPower;
-        set => maxJumpPower = Mathf.Clamp(value, 0f, 10f);
-    }
+    [SerializeField][Range(0, 5)] private float maxInitialJumpPower = 1;
+    [SerializeField][Range(0, 5)] private float maxJumpPower = 1;
+    [SerializeField][Range(0, 5)] private float maxJumpTime = 1;
+    [SerializeField][Range(0, 5)] private int maxJumpCount = 1;
+    public float MaxHealth => maxHealth;
+    public float MaxInitialVelocity => maxInitialVelocity;
+    public float MaxVelocity => maxVelocity;
+    public float MaxTerminalVelocity => maxTerminalVelocity;
+    public float MaxInitialJumpPower => maxInitialJumpPower;
+    public float MaxJumpPower => maxJumpPower;
+    public float MaxJumpTime => maxJumpTime;
+    public int MaxJumpCount => maxJumpCount;
 }

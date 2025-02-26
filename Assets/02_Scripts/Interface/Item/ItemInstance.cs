@@ -5,10 +5,7 @@ using UnityEngine;
 public class ItemInstance : MonoBehaviour
 {
     public ItemInfo ItemData { get; private set; } // 아이템의 원본 데이터
-    public void Take()
-    {
 
-    }
     //public List<ItemOption> Options { get; private set; } // 3개의 랜덤 옵션
     //public int Durability { get; private set; } // 내구도
 

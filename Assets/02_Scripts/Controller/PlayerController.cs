@@ -32,22 +32,26 @@ public class PlayerController : BaseCharacterController
     protected override void Update()
     {
         base.Update();
-        followCam.transform.position = new Vector3(transform.position.x + 3, followCamY, followCam.transform.position.z);
+        if(!resourceController.CameraDoNotFollow)
+            followCam.transform.position = new Vector3(transform.position.x + 3, followCamY, followCam.transform.position.z);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(!resourceController.DoNotJump)
         {
-            isJumping = true;
-            jumpTimeCounter = maxJumpTime;
-            if(JumpCount < resourceController.CurrentJumpCount)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                ++JumpCount;
-                Jump();
+                isJumping = true;
+                jumpTimeCounter = maxJumpTime;
+                if (JumpCount < resourceController.CurrentJumpCount)
+                {
+                    ++JumpCount;
+                    Jump();
+                }
             }
-        }
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            isJumping = false;
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                isJumping = false;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -80,17 +84,20 @@ public class PlayerController : BaseCharacterController
 
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
-        if (jumpTimeCounter <= 0) isJumping = false;
-        if (isJumping && JumpCount < resourceController.CurrentJumpCount)
+        if(!resourceController.DoNotMove)
         {
-            rb.velocity += new Vector2(0, resourceController.CurrentJumpPower);
+            base.FixedUpdate();
+            if (jumpTimeCounter <= 0) isJumping = false;
+            if (isJumping && JumpCount < resourceController.CurrentJumpCount)
+            {
+                rb.velocity += new Vector2(0, resourceController.CurrentJumpPower);
+            }
+            if (!onGround && !isJumping)
+            {
+                rb.velocity += new Vector2(0, -1.0f);
+            }
+            jumpTimeCounter -= Time.fixedDeltaTime;
         }
-        if (!onGround && !isJumping)
-        {
-            rb.velocity += new Vector2(0, -1.0f);
-        }
-        jumpTimeCounter -= Time.fixedDeltaTime;
     }
 
     protected void Jump()

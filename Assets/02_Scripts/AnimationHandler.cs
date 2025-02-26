@@ -10,6 +10,7 @@ public class AnimationHandler : MonoBehaviour
     //private static readonly int IsDamaged = Animator.StringToHash("IsDamaged");
     private static readonly int IsJumping = Animator.StringToHash("IsJumping");
     //private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
+    private static readonly int IsSliding = Animator.StringToHash("IsSliding");
 
     protected Animator animator;
 
@@ -27,10 +28,16 @@ public class AnimationHandler : MonoBehaviour
     {
         animator.SetBool(IsMoving, obj.magnitude > .5f);
     }
-    public void Jumping(Vector2 obj)
+    public void Jumping(int jumpCount)
     {
-        animator.SetTrigger(IsJumping);
+        animator.SetInteger(IsJumping, jumpCount);
     }
+
+    public void Sliding(bool isSlide)
+    {
+        animator.SetBool(IsSliding, isSlide);
+    }
+
 
     //public void Attacking()
     //{

@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
     public void AddCoin(int _coin)
     {
         coin += _coin;
-        uiManager.gameUI.AcquireCoin(coin);
+        //uiManager.gameUI.AcquireCoin(coin);
     }
 
     // 시간에 따른 체력 감소

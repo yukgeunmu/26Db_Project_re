@@ -7,6 +7,10 @@ public class ResourceController : MonoBehaviour
     private AnimationHandler animationHandler;
     private StatHandler statHandler;
 
+    [Header("Settings")]
+    public bool CameraDoNotFollow = false;
+    public bool DoNotMove = false;
+    public bool DoNotJump = false;
     public float CurrentHealth { get; private set; }
     public float speed { get; private set; }
     public float CurrentVelocity { get; private set; }
@@ -16,6 +20,7 @@ public class ResourceController : MonoBehaviour
     public float CurrentJumpPower { get; private set; }
     public int CurrentJumpCount { get; private set; }
     public float CurrentJumpTime { get; private set; }
+    public float MaxHealth => statHandler.MaxHealth;
 
     public void OnAnimationIdle() => animationHandler.Idle();
     public void OnAnimationMove(Vector2 obj) => animationHandler.Moving(obj);
