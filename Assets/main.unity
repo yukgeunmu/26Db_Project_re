@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259196027}
   - component: {fileID: 1259196026}
+  - component: {fileID: 1259196028}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -160,7 +161,7 @@ MonoBehaviour:
   - {fileID: 5012153041753279592, guid: fe157eaf28bc5ff4b9c8f8d4129354d4, type: 3}
   - {fileID: 2335887078958912397, guid: 6f4e87daf0b3aa14e9af6a2efd41e399, type: 3}
   - {fileID: 9178757245593967538, guid: 2263dbcf41ecc80409c2df62675da219, type: 3}
-  fadeImage: {fileID: 0}
+  fadeImage: {fileID: 1487479928}
   fadeSpeed: 0.05
   resetPositionX: -20
   startPositionX: 20
@@ -180,6 +181,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259196028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259196025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5004b31cc903d439610b90a89feaae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPrefab: {fileID: 0}
+  poolSize: 5
+  spawnX: 10
+  moveSpeed: 2.5
+  despawnX: -15
+  groundWidth: 5
 --- !u!1 &1357776824
 GameObject:
   m_ObjectHideFlags: 0
