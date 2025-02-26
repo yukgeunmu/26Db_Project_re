@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            if (GameManager.Instance.resourceController.CurrentHealth >= 0)
+            {
+                GameManager.Instance.resourceController.ChangeHealth(-10f);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

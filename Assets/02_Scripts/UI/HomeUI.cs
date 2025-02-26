@@ -45,7 +45,7 @@ public class HomeUI : BaseUI
 
     public void OnClickExitButton()
     {
-#if UNITY_EDITER
+#if UNITY_EDITOR
     UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
@@ -57,6 +57,17 @@ public class HomeUI : BaseUI
     public void OnClickOpenOptionPanel()
     {
         optionPanel.SetActive(true);
+        float x_Jump = PlayerPrefs.GetFloat("JumpButtonX");
+        if (x_Jump > MiddlePoint())
+        {
+            righSelct.SetActive(true);
+            leftSelect.SetActive(false);
+        }
+        else
+        {
+            righSelct.SetActive(false);
+            leftSelect.SetActive(true);
+        }
         AudioManager.PlayClip(ButtonClip);
     }
 
@@ -87,7 +98,7 @@ public class HomeUI : BaseUI
 
     public void OnClickRightButton()
     {    
-        if(uiManager.gameUI.JumpButton.transform.position.x < MiddlePoint())
+        if(uiManager.gameUI.jumpRect.anchoredPosition.x < 0)
         {      
             uiManager.ChangeButton();
             righSelct.SetActive(true);
@@ -99,7 +110,7 @@ public class HomeUI : BaseUI
 
     public void OnClickLeftButton()
     {
-        if(uiManager.gameUI.JumpButton.transform.position.x > MiddlePoint())
+        if(uiManager.gameUI.jumpRect.anchoredPosition.x > 0)
         {
             uiManager.ChangeButton();
             righSelct.SetActive(false);

@@ -16,6 +16,9 @@ public class GameUI : BaseUI
     [SerializeField] private Button slideButton;
     public Button SlideButton => slideButton;
 
+    public RectTransform jumpRect;
+    public RectTransform slideRect;
+
     public AudioClip jumpSound;
     public AudioClip slideSound;
 
@@ -31,11 +34,15 @@ public class GameUI : BaseUI
         bestScoreText = transform.Find("BestScoreText").GetComponent<Text>();
         jumpButton.onClick.AddListener(OnClickJumpButton);
         slideButton.onClick.AddListener(OnClickSlideButton);
+
+        jumpRect = jumpButton.GetComponent<RectTransform>();
+        slideRect = slideButton.GetComponent<RectTransform>();
+
     }
 
     private void Start()
     {
-        UpdateHPSlider(1);     
+        UpdateHPSlider(1); 
     }
 
     public void UpdateHPSlider(float percentage)
@@ -69,10 +76,41 @@ public class GameUI : BaseUI
 
     public void ChangeJumpButton()
     {
-        Vector3 temptPosition = jumpButton.transform.position;
-        jumpButton.transform.position = slideButton.transform.position;
-        slideButton.transform.position = temptPosition;
+
+        Vector2 tempPosition = jumpRect.anchoredPosition;
+        jumpRect.anchoredPosition= slideRect.anchoredPosition;
+        slideRect.anchoredPosition = tempPosition;
+
+        PlayerPrefs.SetFloat("JumpButtonX", jumpButton.transform.position.x);
+        PlayerPrefs.SetFloat("JumpButtonY", jumpButton.transform.position.y);
+        PlayerPrefs.SetFloat("JumpButtonZ", jumpButton.transform.position.z);
+
+        PlayerPrefs.SetFloat("SlideButtonX", slideButton.transform.position.x);
+        PlayerPrefs.SetFloat("SlideButtonY", slideButton.transform.position.y);
+        PlayerPrefs.SetFloat("SlideButtonZ", slideButton.transform.position.z);
+
+        PlayerPrefs.Save();
     }
+
+    public void LoadButtonPositions()
+    {
+        // 저장된 값이 있는지 확인 후 불러오기
+        if (PlayerPrefs.HasKey("JumpButtonX"))
+        {
+            jumpButton.transform.position = new Vector3(
+                PlayerPrefs.GetFloat("JumpButtonX"),
+                PlayerPrefs.GetFloat("JumpButtonY"),
+                PlayerPrefs.GetFloat("JumpButtonZ")
+            );
+
+            slideButton.transform.position = new Vector3(
+                PlayerPrefs.GetFloat("SlideButtonX"),
+                PlayerPrefs.GetFloat("SlideButtonY"),
+                PlayerPrefs.GetFloat("SlideButtonZ")
+            );
+        }
+    }
+
 
 
     protected override UIState GetUIstate()

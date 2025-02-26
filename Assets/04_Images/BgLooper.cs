@@ -17,7 +17,7 @@ public class BgLooper : MonoBehaviour
 
         for (int i = 0; i < obestacleCount; i++)
         {
-            obstacleLastPosition = obstacles[i].SetRandomPlace(obstacleLastPosition, obestacleCount);
+            //obstacleLastPosition = obstacles[i].SetRandomPlace(obstacleLastPosition, obestacleCount);
         }
     }
 
@@ -36,7 +36,7 @@ public class BgLooper : MonoBehaviour
         Obstacle obstacle = collision.GetComponent<Obstacle>();
         if (obstacle)
         {
-            obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, obestacleCount); // 장애물 재배치
+            //obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, obestacleCount); // 장애물 재배치
         }
     }
 }
