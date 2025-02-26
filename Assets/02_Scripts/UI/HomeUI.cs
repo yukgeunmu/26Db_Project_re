@@ -30,7 +30,7 @@ public class HomeUI : BaseUI
         startButton.onClick.AddListener(OnClickStartButton);
         exitButton.onClick.AddListener(OnClickExitButton);
         OnoptionButton.onClick.AddListener(OnClickOpenOptionPanel);
-        offOptionButton.onClick.AddListener(OnClikOffOptionPanel);
+        offOptionButton.onClick.AddListener(OnClickOffOptionPanel);
         bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         rightButton.onClick.AddListener(OnClickRightButton);
@@ -71,7 +71,7 @@ public class HomeUI : BaseUI
         AudioManager.PlayClip(ButtonClip);
     }
 
-    public void OnClikOffOptionPanel()
+    public void OnClickOffOptionPanel()
     {
         optionPanel.SetActive(false);
         AudioManager.PlayClip(ButtonClip);
