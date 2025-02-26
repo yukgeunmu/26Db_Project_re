@@ -111,11 +111,7 @@ public class GameUI : BaseUI
         }
     }
 
-    public void ResetButtonPositions()
-    {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-    }
+
 
     protected override UIState GetUIstate()
     {

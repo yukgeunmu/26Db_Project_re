@@ -69,10 +69,8 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        if(resourceController != null)
+        if(resourceController != null && uiManager != null)
             StartCoroutine(TimeDamageLoop());
-
-
     }
 
 
@@ -108,6 +106,7 @@ public class GameManager : MonoBehaviour
         uiManager.gameUI.AcquireCoin(coin);
     }
 
+    // 시간에 따른 체력 감소
     private IEnumerator TimeDamageLoop()
     {
         while (true)
@@ -125,6 +124,9 @@ public class GameManager : MonoBehaviour
         while (true)  // 무한 반복 (게임이 끝나면 중지)
         {
             yield return new WaitForSeconds(interval);  // 일정 시간 대기
+            // invokeRepeating
+            // 장애물 생성 시간 변수
+            // 장애물 갯수 변수
         }
     }
 
