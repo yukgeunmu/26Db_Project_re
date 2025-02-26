@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     private int bestScore;
 
 
+
+
     private void Awake()
     {
         homeUI = GetComponentInChildren<HomeUI>(true);
@@ -37,11 +39,22 @@ public class UIManager : MonoBehaviour
         stageUI = GetComponentInChildren<StageUI>(true);
         stageUI.Init(this);
 
-        ChangeState(UIState.Home);
     }
 
     private void Start()
     {
+        if (GameManager.isFirstSet)
+        {
+            ChangeState(UIState.Home);
+            gameUI.LoadButtonPositions();
+            GameManager.isFirstSet = false;
+        }
+        else
+        {
+            GameManager.Instance.StartGame();
+            gameUI.LoadButtonPositions();
+        }
+
         currentScore = GameManager.Instance.CurrentScore;
         bestScore = GameManager.Instance.BestScore;
     }
@@ -50,6 +63,11 @@ public class UIManager : MonoBehaviour
     public void SetPlayGame()
     {
         ChangeState(UIState.Game);
+    }
+
+    public void SetHome()
+    {
+        ChangeState(UIState.Home);
     }
 
     public void SetGameOver()
