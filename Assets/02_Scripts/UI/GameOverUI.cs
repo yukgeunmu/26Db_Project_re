@@ -12,6 +12,8 @@ public class GameOverUI : BaseUI
     [SerializeField] private Text scoreText;
     [SerializeField] private Text bestScoreText;
 
+    public AudioClip ButtonClip;
+
     public override void Init(UIManager uIManager)
     {
         base.Init(uIManager);
@@ -26,11 +28,15 @@ public class GameOverUI : BaseUI
     public void OnClickRestartButton()
     {
         SceneManager.LoadScene("MainScene");
+        AudioManager.PlayClip(ButtonClip);
     }
 
     public void OnClickExitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainScene");
+        GameManager.isFirstSet = true;
+        AudioManager.PlayClip(ButtonClip);
+
     }
 
     public void SetResultGameOverScore(int currentScore, int bestScore)
