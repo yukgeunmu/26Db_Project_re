@@ -1894,8 +1894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408349369}
   - component: {fileID: 1408349368}
-  - component: {fileID: 1408349370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1916,7 +1915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obstacle:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   item:
   - {fileID: 1073286901381284, guid: d3be12c1c6ae33e4f91e254ded6b9c12, type: 3}
   - {fileID: 1972784682752432, guid: 8984a4f6ea7d7a948a29de29abaefcf6, type: 3}
@@ -1939,19 +1938,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1408349370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408349367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592a2fc6c1884ba48ae2e342532b6e5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
 --- !u!1001 &1603512769
 PrefabInstance:
   m_ObjectHideFlags: 0

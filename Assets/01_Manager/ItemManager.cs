@@ -41,7 +41,7 @@ public class ItemManager : MonoBehaviour
 
         int number = Random.Range(1,100);
 
-        float adjustedY = GetItemHeight(spawnStart_x);
+        float adjustedY = Random.Range(-3, 7);
         Vector3 spawnPosition = new Vector3(spawnStart_x, adjustedY, 0);
         
         if(number <= 70) newObject = Instantiate(item[0], spawnPosition, Quaternion.identity);
@@ -56,19 +56,19 @@ public class ItemManager : MonoBehaviour
 
     }
 
-    private float GetItemHeight(float xPosition)
-    {
+    //private float GetItemHeight(float xPosition)
+    //{
 
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(xPosition,spawnStart_y), Vector2.up, Mathf.Infinity, Obstacle);
-        if (hit.collider != null)
-        {
-            int add = Random.Range(5, 7);
-            Debug.Log("장애물 발견! Y 조정");
-            Debug.Log(hit.point.y);
-            return hit.point.y + add;
-        }
-        return spawnStart_y; // 장애물이 없으면 기본 Y값 반환
-    }
+    //    RaycastHit2D hit = Physics2D.Raycast(new Vector2(xPosition,spawnStart_y), Vector2.up, Mathf.Infinity, Obstacle);
+    //    if (hit.collider != null)
+    //    {
+    //        int add = Random.Range(5, 7);
+    //        Debug.Log("장애물 발견! Y 조정");
+    //        Debug.Log(hit.point.y);
+    //        return hit.point.y + add;
+    //    }
+    //    return spawnStart_y; // 장애물이 없으면 기본 Y값 반환
+    //}
 
 }
 
