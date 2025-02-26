@@ -11,19 +11,20 @@ public class StageManager : MonoBehaviour
     public float fadeSpeed = 0.05f; // 페이드 속도
 
     [Header("배경 오브젝트 이동 (구름, 산, 땅)")]
-    public float resetPositionX; // 왼쪽 끝으로 이동 시 리셋할 위치
-    public float startPositionX; // 오른쪽에서 새롭게 시작할 위치
+    public float resetPositionX = -20f; // 왼쪽 끝으로 이동 시 리셋할 위치
+    public float startPositionX = 20f; // 오른쪽에서 새롭게 시작할 위치
+    public int maxRepeats = 1; // 각 배경이 반복되는 최대 횟수
 
     private GameObject currentBackground; // 현재 배경 오브젝트 (부모)
     private List<Transform> clouds = new List<Transform>(); // 구름 리스트
     private List<Transform> mountains = new List<Transform>(); // 산 리스트
     private List<Transform> ground = new List<Transform>(); // 땅 리스트
     private int currentStage = 0; // 현재 스테이지 번호
+    private int repeatCount = 0; // 현재 배경 반복 횟수
 
     void Start()
     {
-        // 첫 번째 배경 로드
-        ChangeStage(0);
+        ChangeStage(0); // 첫 번째 배경 로드
     }
 
     void Update()
@@ -41,6 +42,8 @@ public class StageManager : MonoBehaviour
 
     private IEnumerator FadeTransition(int newStage)
     {
+        Debug.Log($"페이드 아웃 시작, 변경할 배경: {newStage}");
+
         // 1. 페이드 아웃 (화면이 점점 어두워짐)
         for (float i = 0; i <= 1; i += fadeSpeed)
         {
@@ -51,26 +54,34 @@ public class StageManager : MonoBehaviour
         // 2. 기존 배경 삭제 후 새로운 배경 생성
         if (currentBackground != null)
         {
+            Debug.Log($"삭제 전 배경: {currentBackground.name}");
             Destroy(currentBackground);
         }
-        currentBackground = Instantiate(backgrounds[newStage], Vector3.zero, Quaternion.identity);
-        currentStage = newStage;
 
-        // 3. 새 배경의 자식 오브젝트를 자동으로 가져옴
+        // 3. 새로운 배경 생성
+        currentBackground = Instantiate(backgrounds[newStage], Vector3.zero, Quaternion.identity);
+        currentBackground.transform.position = new Vector3(0, 0, 0);
+        Debug.Log($"새로운 배경 생성: {currentBackground.name}");
+
+        currentStage = newStage;
+        repeatCount = 0; // 반복 횟수 초기화
+
+        // 4. 새 배경의 자식 오브젝트를 자동으로 가져옴
         AssignBackgroundElements();
 
-        // 4. 페이드 인 (화면이 점점 밝아짐)
+        // 5. 페이드 인 (화면이 점점 밝아짐)
         for (float i = 1; i >= 0; i -= fadeSpeed)
         {
             fadeImage.color = new Color(0, 0, 0, i);
             yield return new WaitForSeconds(fadeSpeed);
         }
+
+        Debug.Log($"스테이지 변경 완료: {currentStage}");
     }
 
     // **부모 배경(기본 바탕)의 자식 오브젝트(구름, 산, 땅)를 자동 할당**
     private void AssignBackgroundElements()
     {
-        // 기존 리스트 초기화
         clouds.Clear();
         mountains.Clear();
         ground.Clear();
@@ -83,6 +94,8 @@ public class StageManager : MonoBehaviour
             else if (child.name.Contains("Mountain")) mountains.Add(child);
             else if (child.name.Contains("Ground")) ground.Add(child);
         }
+
+        Debug.Log($"구름 개수: {clouds.Count}, 산 개수: {mountains.Count}, 땅 개수: {ground.Count}");
     }
 
     // **개별 오브젝트 이동 처리 (구름, 산, 땅 등)**
@@ -90,15 +103,28 @@ public class StageManager : MonoBehaviour
     {
         if (elements.Count == 0) return;
 
-        foreach (Transform element in elements)
+        for (int i = 0; i < elements.Count; i++)
         {
-            // 각 오브젝트를 왼쪽으로 이동
-            element.position += Vector3.left * speed * Time.deltaTime;
+            elements[i].position += Vector3.left * speed * Time.deltaTime;
 
-            // 왼쪽 끝에 도달하면 다시 오른쪽에서 등장
-            if (element.position.x <= resetPositionX)
+            if (elements[i].position.x <= resetPositionX)
             {
-                element.position = new Vector3(startPositionX, element.position.y, element.position.z);
+                elements[i].position = new Vector3(startPositionX, elements[i].position.y, elements[i].position.z);
+
+                // **구름이 한 번 왼쪽 끝까지 이동했을 때 카운트 증가**
+                if (elements == clouds)
+                {
+                    repeatCount++;
+                    Debug.Log($"배경 반복 횟수: {repeatCount} / {maxRepeats}");
+
+                    if (repeatCount >= maxRepeats)
+                    {
+                        // ✅ **다음 배경으로 이동**
+                        int nextStage = (currentStage + 1) % backgrounds.Length;
+                        Debug.Log($"배경 변경: {currentStage} → {nextStage}");
+                        ChangeStage(nextStage);
+                    }
+                }
             }
         }
     }
