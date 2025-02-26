@@ -44,6 +44,9 @@ public class StageManager : MonoBehaviour
     {
         Debug.Log($"페이드 아웃 시작, 변경할 배경: {newStage}");
 
+        //페이드 이미지 활성화 (켜기)
+        fadeImage.gameObject.SetActive(true);
+
         // 1. 페이드 아웃 (화면이 점점 어두워짐)
         for (float i = 0; i <= 1; i += fadeSpeed)
         {
@@ -75,9 +78,11 @@ public class StageManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, i);
             yield return new WaitForSeconds(fadeSpeed);
         }
+          //  페이드 이미지 비활성화 (끄기)
+        fadeImage.gameObject.SetActive(false);
 
         Debug.Log($"스테이지 변경 완료: {currentStage}");
-    }
+        }
 
     // **부모 배경(기본 바탕)의 자식 오브젝트(구름, 산, 땅)를 자동 할당**
     private void AssignBackgroundElements()
@@ -119,7 +124,7 @@ public class StageManager : MonoBehaviour
 
                     if (repeatCount >= maxRepeats)
                     {
-                        // ✅ **다음 배경으로 이동**
+                        // **다음 배경으로 이동**
                         int nextStage = (currentStage + 1) % backgrounds.Length;
                         Debug.Log($"배경 변경: {currentStage} → {nextStage}");
                         ChangeStage(nextStage);
