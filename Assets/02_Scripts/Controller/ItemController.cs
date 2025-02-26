@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            ItemInstance item = collision.GetComponent<ItemInstance>();
+            if (item is ITakeable)
+            {
+                ITakeable itemTake = (ITakeable)item; 
+                itemTake.Take();
+            }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            //collision.GetComponent<ItemInstance>().Take(ResourceController resourceController);
+            Destroy(collision.gameObject);
+        }
     }
 }
