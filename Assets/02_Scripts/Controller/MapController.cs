@@ -12,6 +12,16 @@ public class TilemapLooper : MonoBehaviour
 
     void Start()
     {
+        // ✅ **타일맵이 비활성화되어 있으면 활성화**
+        if (!tilemap1.gameObject.activeSelf)
+        {
+            tilemap1.gameObject.SetActive(true);
+        }
+        if (!tilemap2.gameObject.activeSelf)
+        {
+            tilemap2.gameObject.SetActive(true);
+        }
+
         // 첫 번째 타일맵은 (0, 0), 두 번째 타일맵은 (17.98, 0)에 배치
         tilemap1.position = new Vector3(0, tilemap1.position.y, tilemap1.position.z);
         tilemap2.position = new Vector3(startPositionX, tilemap2.position.y, tilemap2.position.z);
@@ -24,6 +34,16 @@ public class TilemapLooper : MonoBehaviour
 
     private void MoveTilemaps()
     {
+        // ✅ **이동 전, 타일맵이 비활성화되었으면 다시 활성화**
+        if (!tilemap1.gameObject.activeSelf)
+        {
+            tilemap1.gameObject.SetActive(true);
+        }
+        if (!tilemap2.gameObject.activeSelf)
+        {
+            tilemap2.gameObject.SetActive(true);
+        }
+
         // 타일맵을 왼쪽으로 이동
         tilemap1.position += Vector3.left * moveSpeed * Time.deltaTime;
         tilemap2.position += Vector3.left * moveSpeed * Time.deltaTime;
