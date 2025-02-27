@@ -10,6 +10,8 @@ public class HomeUI : BaseUI
     [SerializeField] private Button startButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button OnoptionButton;
+    [SerializeField] private Button ChallengeButton;
+    [SerializeField] private Button CustuMizingButton;
     [SerializeField] private Button offOptionButton;
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private Slider bgmSlider;
@@ -18,6 +20,8 @@ public class HomeUI : BaseUI
     [SerializeField] private Button leftButton;
     [SerializeField] private GameObject righSelct;
     [SerializeField] private GameObject leftSelect;
+
+
 
 
     public AudioClip ButtonClip;
@@ -37,6 +41,8 @@ public class HomeUI : BaseUI
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         rightButton.onClick.AddListener(OnClickRightButton);
         leftButton.onClick.AddListener(OnClickLeftButton);
+        CustuMizingButton.onClick.AddListener(OnClickChallengeButton);
+        ChallengeButton.onClick.AddListener(OnClickCustuMizingButton);
 
     }
 
@@ -123,6 +129,18 @@ public class HomeUI : BaseUI
         }
            
     }
+
+    public void OnClickChallengeButton()
+    {
+        AudioManager.PlayClip(ButtonClip);
+    }
+
+    public void OnClickCustuMizingButton()
+    {
+
+        AudioManager.PlayClip(ButtonClip);
+    }
+
 
     protected override UIState GetUIstate()
     {
