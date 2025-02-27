@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour
 {
 
+    [SerializeField] private AudioClip collisionClip;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -12,6 +13,7 @@ public class ObstacleController : MonoBehaviour
             if (GameManager.Instance.resourceController.CurrentHealth >= 0)
             {
                 GameManager.Instance.resourceController.ChangeHealth(-10f);
+                AudioManager.PlayClip(collisionClip);
             }
         }
     }

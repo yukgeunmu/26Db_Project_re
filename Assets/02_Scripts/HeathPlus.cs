@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinItemInstance : ItemInstance, ITakeable
+public class HeathPlus : ItemInstance, ITakeable
 {
     public void Take()
     {
-        GameManager.Instance.AddScore(1);
+        GameManager.Instance.resourceController.ChangeHealth(30);
     }
+
+
 }

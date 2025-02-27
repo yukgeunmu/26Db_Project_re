@@ -20,11 +20,6 @@ public class UIManager : MonoBehaviour
     public StageUI stageUI;
     private UIState currentState;
 
-    private int currentScore;
-    private int bestScore;
-
-
-
 
     private void Awake()
     {
@@ -55,8 +50,6 @@ public class UIManager : MonoBehaviour
             gameUI.LoadButtonPositions();
         }
 
-        currentScore = GameManager.Instance.CurrentScore;
-        bestScore = GameManager.Instance.BestScore;
     }
 
 
@@ -73,7 +66,7 @@ public class UIManager : MonoBehaviour
     public void SetGameOver()
     {
         ChangeState(UIState.GameOver);
-        gameOverUI.SetResultGameOverScore(currentScore, bestScore);
+        gameOverUI.SetResultGameOverScore(GameManager.Instance.CurrentScore, GameManager.Instance.BestScore);
     }
 
     public void ChangePlayerHP(float currentHP, float maxHP)

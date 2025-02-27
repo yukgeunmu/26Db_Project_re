@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/99_Extenal/Obstacle.prefab.meta
-guid: c0f00f598cfff0c42b8ce399edc3859e
-========
-guid: 7a76311880419b94d824538232ea5404
->>>>>>>> develop:Assets/09_Tile/Ground_Tile.prefab.meta
+guid: 59b1a7db6097fb2419a2b812ca3644f0
 PrefabImporter:
   externalObjects: {}
   userData: 

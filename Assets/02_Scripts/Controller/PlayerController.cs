@@ -27,7 +27,7 @@ public class PlayerController : BaseCharacterController
     {
         // 카메라 변수 할당
         followCam = Camera.main;
-        followCamY = transform.position.y + 1;
+        followCamY = transform.position.y;
 
         // 콜라이더 원본 정보 저장
         BoxCollider2D box = GetComponent<BoxCollider2D>();
@@ -44,7 +44,7 @@ public class PlayerController : BaseCharacterController
     private void LateUpdate()
     {
         if (!CameraDoNotFollow)
-            followCam.transform.position = new Vector3(transform.position.x + 3, followCamY, followCam.transform.position.z);
+            followCam.transform.position = new Vector3(transform.position.x, followCamY, followCam.transform.position.z);
     }
 
     protected override void HandleAction()

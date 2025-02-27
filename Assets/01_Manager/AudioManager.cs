@@ -37,6 +37,11 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayClip(AudioClip clip)
     {
+        if (clip == null)
+        {
+            Debug.LogError("재생할 AudioClip이 null입니다! AudioManager에서 확인하세요.");
+            return;
+        }
         SoundSource obj = Instantiate(instance.soundSourcePrefabs);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
         soundSource.Play(clip, instance.soundEffectVolume, instance.soundEffectPitchVariance);

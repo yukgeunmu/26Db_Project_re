@@ -8,7 +8,6 @@ public class GameUI : BaseUI
 {
 
     [SerializeField] private Slider hpSlider;
-    [SerializeField] private Text coinText;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private Button jumpButton;
@@ -29,7 +28,6 @@ public class GameUI : BaseUI
     {
         base.Init(uIManager);
         hpSlider = transform.Find("Slider").GetComponent<Slider>();
-        coinText = transform.Find("CointText").GetComponent<Text>();
         scoreText = transform.Find("ScoreText").GetComponent<Text>();
         bestScoreText = transform.Find("BestScoreText").GetComponent<Text>();
         jumpButton.onClick.AddListener(OnClickJumpButton);
@@ -37,6 +35,8 @@ public class GameUI : BaseUI
 
         jumpRect = jumpButton.GetComponent<RectTransform>();
         slideRect = slideButton.GetComponent<RectTransform>();
+
+        bestScoreText.text = GameManager.Instance.BestScore.ToString();
 
     }
 
@@ -58,10 +58,11 @@ public class GameUI : BaseUI
     }
 
     // ÄÚÀÎ ¾÷µ¥ÀÌÆ®
-    public void AcquireCoin(int coin)
-    {
-        coinText.text = coin.ToString();
-    }
+    //public void AcquireCoin(int coin)
+    //{
+    //    Debug.Log("Á¡¼ö È¹µæ");
+    //    coinText.text = coin.ToString();
+    //}
 
 
     public void OnClickJumpButton()
