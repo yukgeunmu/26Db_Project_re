@@ -19,13 +19,15 @@ public class HomeUI : BaseUI
     [SerializeField] private GameObject righSelct;
     [SerializeField] private GameObject leftSelect;
 
-    public AudioClip ButtonClip;
 
-    
+    public AudioClip ButtonClip;
 
     public override void Init(UIManager uIManager)
     {
         base.Init(uIManager);
+
+        bgmSlider.value = AudioManager.instance.MusicVolume;
+        sfxSlider.value = AudioManager.instance.SoundEffectVolume;
 
         startButton.onClick.AddListener(OnClickStartButton);
         exitButton.onClick.AddListener(OnClickExitButton);
@@ -35,6 +37,7 @@ public class HomeUI : BaseUI
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         rightButton.onClick.AddListener(OnClickRightButton);
         leftButton.onClick.AddListener(OnClickLeftButton);
+
     }
 
     public void OnClickStartButton()
@@ -80,6 +83,7 @@ public class HomeUI : BaseUI
     public void SetBGMVolume(float value)
     {
         AudioManager.instance.MusicAudioSource.volume = Mathf.Clamp(value, 0f, 1f);
+        AudioManager.instance.SetMusicVolumeSave(value);
     }
 
     public void SetSFXVolume(float value)
