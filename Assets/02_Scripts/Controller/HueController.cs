@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HuePicker : MonoBehaviour, IPointerDownHandler, IDragHandler
+public class HueController : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     public RawImage paletteImage;
     private Texture2D paletteTexture;
-    [SerializeField] private PalettePicker _palettePicker;
+    [SerializeField] private PaletteController _palettePicker;
 
     public void Start()
     {

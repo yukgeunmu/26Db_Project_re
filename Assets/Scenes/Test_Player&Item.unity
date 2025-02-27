@@ -2161,7 +2161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxJumpTime
-      value: 0.1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxVelocity
@@ -2173,7 +2173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxJumpPower
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxInitialVelocity
@@ -2181,7 +2181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxInitialJumpPower
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxTerminalVelocity
@@ -3371,7 +3371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed26367821fd36b4ca3e6259b740cb69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  resourceController: {fileID: 0}
+  stageManager: {fileID: 0}
+  timeDamage: 1
   gameClip1: {fileID: 0}
+  ResetKey: 0
 --- !u!4 &1592216833
 Transform:
   m_ObjectHideFlags: 0

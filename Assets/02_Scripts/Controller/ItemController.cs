@@ -6,16 +6,15 @@ public class ItemController : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 충돌한 아이템의 Take() 함수 호출 후 파괴
         if (collision.gameObject.CompareTag("Item"))
         {
             ItemInstance item = collision.GetComponent<ItemInstance>();
-            if (item is ITakeable)
+            if (item is ITakeable itemTake)
             {
-                ITakeable itemTake = (ITakeable)item; 
                 itemTake.Take();
             }
 
-            //collision.GetComponent<ItemInstance>().Take(ResourceController resourceController);
             Destroy(collision.gameObject);
         }
     }
