@@ -12,7 +12,6 @@ public class ObstacleController : MonoBehaviour
         {
             if (GameManager.Instance.resourceController.CurrentHealth >= 0)
             {
-                Debug.Log("Ãæµ¹ÇÔ");
                 GameManager.Instance.resourceController.ChangeHealth(-10f);
                 AudioManager.PlayClip(collisionClip);
             }

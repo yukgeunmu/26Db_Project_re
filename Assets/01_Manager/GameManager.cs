@@ -30,6 +30,28 @@ public class GameManager : MonoBehaviour
     // 최고 점수
     private int bestScore = 0;
     public int BestScore => bestScore;
+    [SerializeField][Range(0f, 1f)] private float maxTerminalVelocity = 10f;
+    [SerializeField][Range(0f, 1f)] private float maxVelocity = 0.01f;
+
+    [SerializeField][Range(0f, 10f)] private float obstacleSpeed = 10f;
+    public float ObstacleSpeed => obstacleSpeed;
+
+    [SerializeField][Range(0f, 10f)] private float obstacleTime = 1f;
+    public float ObstacleTime => obstacleTime;
+
+    [SerializeField][Range(0f, 1f)] private float obstacleFactor = 1f;
+    public float ObstacleFactor => obstacleFactor;
+
+    [SerializeField][Range(0f, 2f)] private float ItemspawnTime = 1f;
+    public float ItemSpwnTime => ItemspawnTime;
+
+    [SerializeField][Range(0f, 1f)] private float ItemspawnFactor = 0.05f;
+    public float ItemSpawnFactor => ItemspawnFactor;
+    [SerializeField][Range(0, 10)] private float itemGap;
+    public float ItemGap => itemGap;
+
+
+    public bool GodMode = false;
 
     // 코인
     //private int coin;
@@ -80,8 +102,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (GodMode == true)
+            resourceController.ChangeHealth(100);
+
+      
+
         if (isTime)
+        {
             Time.timeScale = 1f;
+            obstacleSpeed = obstacleSpeed > maxTerminalVelocity ? maxTerminalVelocity : obstacleSpeed + maxVelocity;
+        }
+          
         else
             Time.timeScale = 0f;
 

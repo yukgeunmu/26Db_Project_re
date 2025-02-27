@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveController : MonoBehaviour
+public class ItemMove : MonoBehaviour
 {
     private float speed = 1f;
 
-    private void Awake()
-    {
-        speed = GameManager.Instance.ObstacleSpeed;
-    }
+
     // Update is called once per frame
     void Update()
     {
+        speed = 1f;
         MoveElements(speed);
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
@@ -15,13 +16,17 @@ public class ItemManager : MonoBehaviour
 
     public float spawnStart_x = 0; // X축 시작 위치
     public float spawnStart_y = -3f;
-    private float y = 0;
-    private float spawnGapX = 1f;
+    private float spawnGapX;
+    private float lastSpawn_x;
+    private float spawnInterval;
+    private float speedFactor;
+    public float minSpawnInterval = 0.3f; // 최소 생성 간격 (너무 빠르지 않도록 제한)
     [SerializeField][Range(0.1f,10f)]private float itemCreateSpeed = 1f;
 
 
     private void Start()
     {
+        lastSpawn_x = spawnStart_x;
         StartCoroutine(SpawnItemRoutine());
     }
 
@@ -30,6 +35,10 @@ public class ItemManager : MonoBehaviour
         while (true)
         {
             SpawnItem();
+            spawnGapX = GameManager.Instance.ItemGap;
+            spawnInterval = GameManager.Instance.ItemSpwnTime;
+            speedFactor = GameManager.Instance.ItemSpawnFactor;
+            float adjustedInterval = Mathf.Max(minSpawnInterval, spawnInterval - speedFactor);
             yield return new WaitForSeconds(itemCreateSpeed);
         }
     }
@@ -41,8 +50,8 @@ public class ItemManager : MonoBehaviour
 
         int number = Random.Range(1,100);
 
-        float adjustedY = Random.Range(-3, 4);
-        Vector3 spawnPosition = new Vector3(spawnStart_x, adjustedY, 0);
+        float adjustedY = Random.Range(-3, 1);
+        Vector3 spawnPosition = new Vector3(lastSpawn_x, adjustedY, 0);
         
         if(number <= 70) newObject = Instantiate(item[0], spawnPosition, Quaternion.identity);
         else if(number <= 90) newObject = Instantiate(item[1], spawnPosition, Quaternion.identity);
@@ -52,7 +61,12 @@ public class ItemManager : MonoBehaviour
         newTrans.parent = this.transform;
 
 
-        spawnStart_x += spawnGapX;
+        lastSpawn_x += spawnGapX;
+
+        if (lastSpawn_x > 20f)
+        {
+            lastSpawn_x = spawnStart_x;
+        }
 
     }
 

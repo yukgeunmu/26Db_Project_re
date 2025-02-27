@@ -758,6 +758,15 @@ MonoBehaviour:
   timeDamage: 1
   gameClip1: {fileID: 8300000, guid: fc5af015011ea3745b7f78ea1dd1049f, type: 3}
   ResetKey: 0
+  maxTerminalVelocity: 10
+  maxVelocity: 0.001
+  obstacleSpeed: 0
+  obstacleTime: 2
+  obstacleFactor: 0.5
+  ItemspawnTime: 0.5
+  ItemspawnFactor: 0.05
+  itemGap: 10
+  GodMode: 1
   isTime: 0
 --- !u!4 &306163373
 Transform:
@@ -1106,9 +1115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7574bfc026fb7484fa7be33a8f18dbd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffectVolume: 0.5
-  soundEffectPitchVariance: 0.5
-  musicVolume: 0.5
+  soundEffectVolume: 0
+  soundEffectPitchVariance: 0
+  musicVolume: 0
   musicClip: {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
   soundSourcePrefabs: {fileID: 2581884843002363535, guid: abcb1d15e25c48840b5aef6cbd1acbd1, type: 3}
 --- !u!4 &556604107
@@ -1119,7 +1128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556604104}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1921,8 +1930,10 @@ MonoBehaviour:
   - {fileID: 1073286901381284, guid: d3be12c1c6ae33e4f91e254ded6b9c12, type: 3}
   - {fileID: 1972784682752432, guid: 8984a4f6ea7d7a948a29de29abaefcf6, type: 3}
   - {fileID: 1298934054778736, guid: 0017488e1eeb43745a893e65ac58017d, type: 3}
+  - {fileID: 1298934054778736, guid: 0017488e1eeb43745a893e65ac58017d, type: 3}
   spawnStart_x: 10
   spawnStart_y: -3
+  minSpawnInterval: 0.3
   itemCreateSpeed: 1
 --- !u!4 &1408349369
 Transform:
