@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class PalettePicker: MonoBehaviour, IPointerDownHandler, IDragHandler
+public class PaletteController: MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     public RawImage paletteImage;  // UI 팔레트 (RawImage)
     public SpriteRenderer targetSprite; // 색상이 변경될 스프라이트
