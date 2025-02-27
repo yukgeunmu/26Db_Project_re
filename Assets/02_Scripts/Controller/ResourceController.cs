@@ -6,20 +6,12 @@ public class ResourceController : MonoBehaviour
 {
     private AnimationHandler animationHandler;
     private StatHandler statHandler;
-
-    [Header("Settings")]
-    public bool CameraDoNotFollow = false;
-    public bool DoNotMove = false;
-    public bool DoNotJump = false;
     public float CurrentHealth { get; private set; }
-    public float speed { get; private set; }
     public float CurrentVelocity { get; private set; }
-    public float CurrentInitialVelocity { get; private set; }
-    public float CurrentTerminalVelocity { get; private set; }
-    public float CurrentInitialJumpPower { get; private set; }
     public float CurrentJumpPower { get; private set; }
     public int CurrentJumpCount { get; private set; }
     public float CurrentJumpTime { get; private set; }
+    public float CurrentJumpHeight { get; private set; }
     public float MaxHealth => statHandler.MaxHealth;
 
     public void OnAnimationIdle() => animationHandler.Idle();
@@ -32,20 +24,16 @@ public class ResourceController : MonoBehaviour
         animationHandler = GetComponent<AnimationHandler>();
         statHandler = GetComponent<StatHandler>();
         CurrentHealth = statHandler.MaxHealth;
-        CurrentInitialVelocity = statHandler.MaxInitialVelocity;
         CurrentVelocity = statHandler.MaxVelocity;
-        CurrentTerminalVelocity = statHandler.MaxTerminalVelocity;
-        CurrentInitialJumpPower = statHandler.MaxInitialJumpPower;
         CurrentJumpPower = statHandler.MaxJumpPower;
         CurrentJumpCount = statHandler.MaxJumpCount;
         CurrentJumpTime = statHandler.MaxJumpTime;
+        CurrentJumpHeight = statHandler.MaxJumpHeight;
     }
 
     private void Start()
     {
         animationHandler.Init();
-
-        speed = CurrentInitialVelocity;
     }
      
     public void ChangeHealth(float damage)
@@ -53,9 +41,9 @@ public class ResourceController : MonoBehaviour
         CurrentHealth += damage;
     }
      
-    public void ChangeSpeed()
+    public void ChangeSpeed(float speed)
     {
-        speed = speed > CurrentTerminalVelocity ? CurrentTerminalVelocity : speed + CurrentVelocity;
+        CurrentVelocity = speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

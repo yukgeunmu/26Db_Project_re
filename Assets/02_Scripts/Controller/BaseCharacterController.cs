@@ -8,20 +8,22 @@ public class BaseCharacterController : MonoBehaviour
     protected ResourceController resourceController;
     protected Rigidbody2D rb;
 
-    protected Vector2 movementDirection = Vector2.zero;
+    protected Vector2 movementDirection = Vector2.right;
 
-
+    // 변수 할당
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         resourceController = GetComponent<ResourceController>();
     }
 
+    // 움직임 값 계산
     protected virtual void Update()
     {
         HandleAction();
     }
 
+    // 움직임 적용
     protected virtual void FixedUpdate()
     {
         Movment(movementDirection);
@@ -31,12 +33,9 @@ public class BaseCharacterController : MonoBehaviour
     {
     }
 
+    // 움직임 함수
     private void Movment(Vector2 direction)
     {
-        Vector2 dir = direction * resourceController.speed;
-
-        rb.velocity = new Vector2(dir.x, rb.velocity.y);
-
-        resourceController.OnAnimationMove(dir);
+        rb.velocity = new Vector2(direction.x * resourceController.CurrentVelocity, direction.y * resourceController.CurrentJumpPower);
     }
 }

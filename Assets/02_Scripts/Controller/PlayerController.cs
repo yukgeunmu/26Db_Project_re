@@ -4,122 +4,127 @@ using UnityEngine;
 
 public class PlayerController : BaseCharacterController
 {
+    [Header("Settings")]
+    public bool CameraDoNotFollow = false;
+    public bool DoNotMove = false;
+
+    // 플레이어 따라다니는 카메라
     private Camera followCam;
     private float followCamY;
 
-    float jumpTimeCounter = 0f;
-    float maxJumpTime;
-
+    // 슬라이딩에서 작아진 콜라이더를 원 상태로 복구시키기 위한 원본 데이터
     Vector2 originalBoxColliderSize;
     Vector2 originalBoxColliderOffset;
 
-    protected bool isJumping = false;
-    protected bool isSlide = false;
+    // 점프 및 슬라이드를 하기 위한 조건
     protected bool onGround = false;
-    protected int JumpCount = 0; 
+    protected bool isSlide = false;
+    protected bool isJumping = false;
+    protected int JumpCount = 0;
+    float jumpTimeCounter = 0f;
 
     protected void Start()
     {
+        // 카메라 변수 할당
         followCam = Camera.main;
-        movementDirection = Vector2.right * resourceController.CurrentInitialVelocity;
-        maxJumpTime = resourceController.CurrentJumpTime;
+        followCamY = transform.position.y + 1;
+
+        // 콜라이더 원본 정보 저장
         BoxCollider2D box = GetComponent<BoxCollider2D>();
         originalBoxColliderOffset = box.offset;
         originalBoxColliderSize = box.size;
-        followCamY = transform.position.y + 1;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-        if(!resourceController.CameraDoNotFollow)
-            followCam.transform.position = new Vector3(transform.position.x + 3, followCamY, followCam.transform.position.z);
-
-        if(!resourceController.DoNotJump)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                isJumping = true;
-                jumpTimeCounter = maxJumpTime;
-                if (JumpCount < resourceController.CurrentJumpCount)
-                {
-                    ++JumpCount;
-                    Jump();
-                }
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                isJumping = false;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-
-            Vector2 newSize = boxCollider.size;
-            Vector2 newOffset = boxCollider.offset;
-
-            float cutAmount = boxCollider.size.y / 2;
-            newSize.y -= cutAmount;  // 세로 길이 감소
-            newOffset.y -= cutAmount / 2.0f; // 아래쪽으로 이동하여 위쪽이 잘린 효과
-
-            boxCollider.size = newSize;
-            boxCollider.offset = newOffset;
-
-            Slide(true);
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-
-            boxCollider.size = originalBoxColliderSize;
-            boxCollider.offset = originalBoxColliderOffset;
-
-            Slide(false);
-        }
     }
 
     protected override void FixedUpdate()
     {
-        if(!resourceController.DoNotMove)
-        {
+        if (!DoNotMove)
             base.FixedUpdate();
-            if (jumpTimeCounter <= 0) isJumping = false;
-            if (isJumping && JumpCount < resourceController.CurrentJumpCount)
-            {
-                rb.velocity += new Vector2(0, resourceController.CurrentJumpPower);
-            }
-            if (!onGround && !isJumping)
-            {
-                rb.velocity += new Vector2(0, -1.0f);
-            }
-            jumpTimeCounter -= Time.fixedDeltaTime;
-        }
     }
 
-    protected void Jump()
+    private void LateUpdate()
     {
-        Vector2 jumpDirection = Vector2.up * resourceController.CurrentInitialJumpPower * JumpCount;
-
-        rb.velocity = new Vector2(0, jumpDirection.y);
-        resourceController.OnAnimationJump(JumpCount);
-
-    }
-
-    protected void Slide(bool isTrue)
-    {
-        resourceController.OnAnimationSlide(isTrue);
+        if (!CameraDoNotFollow)
+            followCam.transform.position = new Vector3(transform.position.x + 3, followCamY, followCam.transform.position.z);
     }
 
     protected override void HandleAction()
     {
-        resourceController.ChangeSpeed();
-        movementDirection = Vector2.right;
+        // 활공 시간 끝나거나 점프 제한 높이 도달시 낙하. 땅에 닿으면 낙하 중단.
+        if (jumpTimeCounter <= 0 || transform.position.y > resourceController.CurrentJumpHeight * JumpCount) 
+            isJumping = false;
+        if (!onGround && !isJumping)
+            movementDirection.y = -1;
+        else if (onGround && !isJumping)
+            movementDirection.y = 0;
+
+        // 버튼 눌림 감지
+        switch (GetKeyDown())
+        {
+            case KeyCode.Space:
+                if (JumpCount < resourceController.CurrentJumpCount && !isSlide)
+                {
+                    isJumping = true;
+                    jumpTimeCounter = resourceController.CurrentJumpTime;
+                    ++JumpCount;
+                    movementDirection.y = 1;
+                    resourceController.OnAnimationJump(JumpCount);
+                }
+                break;
+
+            case KeyCode.LeftShift:
+                if(!isJumping)
+                {
+                    isSlide = true;
+                    BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+                    Vector2 newSize = boxCollider.size;
+                    Vector2 newOffset = boxCollider.offset;
+
+                    float cutAmount = boxCollider.size.y / 2;
+                    newSize.y -= cutAmount;
+                    newOffset.y -= cutAmount / 2.0f;
+
+                    boxCollider.size = newSize;
+                    boxCollider.offset = newOffset;
+                    resourceController.OnAnimationSlide(isSlide);
+                }
+                break;
+        }
+
+        switch (GetKeyUp())
+        {
+            case KeyCode.Space:                
+                if(isJumping)
+                    isJumping = false;
+                break;
+
+            case KeyCode.LeftShift:
+                if (isSlide)
+                {
+                    isSlide = false;
+                    BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+                    boxCollider.size = originalBoxColliderSize;
+                    boxCollider.offset = originalBoxColliderOffset;
+                    resourceController.OnAnimationSlide(isSlide);
+                }
+                break;
+        }
     }
 
+    KeyCode? GetKeyDown()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) return KeyCode.Space;
+        if (Input.GetKeyDown(KeyCode.LeftShift)) return KeyCode.LeftShift;
+        return null;
+    }
+
+    KeyCode? GetKeyUp()
+    {
+        if (Input.GetKeyUp(KeyCode.Space)) return KeyCode.Space;
+        if (Input.GetKeyUp(KeyCode.LeftShift)) return KeyCode.LeftShift;
+        return null;
+    }
+
+    // 땅에 닿으면 다시 점프 가능하도록 초기화
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
@@ -130,6 +135,7 @@ public class PlayerController : BaseCharacterController
         }
     }
 
+    // 땅에서 떨어지면 점프 애니메이션 재생
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
