@@ -88,45 +88,59 @@ public class StageManager : MonoBehaviour
     {
         Debug.Log($"페이드 아웃 시작, 변경할 배경: {newStage}");
 
-        // 페이드 이미지 활성화
+        // 1. 페이드 이미지 활성화
+        if (fadeImage == null)
+        {
+            Debug.LogError(" 페이드 이미지가 설정되지 않았습니다!");
+            yield break;
+        }
         fadeImage.gameObject.SetActive(true);
 
-        // 1. 페이드 아웃 (화면이 점점 어두워짐)
+        // 2. 페이드 아웃 (화면이 점점 어두워짐)
         for (float i = 0; i <= 1; i += fadeSpeed)
         {
             fadeImage.color = new Color(0, 0, 0, i);
-            yield return new WaitForSeconds(fadeSpeed);
+            yield return new WaitForSecondsRealtime(fadeSpeed); //  Time.timeScale 영향 받지 않음
         }
 
-        // 2. 기존 배경 삭제 후 새로운 배경 생성
+        // 3. 기존 배경 삭제
         if (currentBackground != null)
         {
-            Debug.Log($"삭제 전 배경: {currentBackground.name}");
+            Debug.Log($"기존 배경 삭제: {currentBackground.name}");
             Destroy(currentBackground);
         }
 
-        // 3. 새로운 배경 생성
+        // 4. 새로운 배경 생성
+        if (currentBackgrounds == null || newStage >= currentBackgrounds.Length || currentBackgrounds[newStage] == null)
+        {
+            Debug.LogError($"스테이지 {newStage}의 배경이 null이거나 존재하지 않습니다!");
+            yield break;
+        }
+
         currentBackground = Instantiate(currentBackgrounds[newStage], Vector3.zero, Quaternion.identity);
-        currentBackground.transform.position = new Vector3(mainCamera.position.x, 0, 0); // 카메라 위치로 설정
-        Debug.Log($"새로운 배경 생성: {currentBackground.name}");
+        currentBackground.transform.position = new Vector3(mainCamera.position.x, 0, 0); //  카메라 위치로 설정
+        currentBackground.SetActive(true);
+
+        Debug.Log($"새로운 배경 생성 완료: {currentBackground.name}");
 
         currentStage = newStage;
-        repeatCount = 0; // 반복 횟수 초기화
+        repeatCount = 0; //  반복 횟수 초기화
 
-        // 4. 새 배경의 자식 오브젝트를 자동으로 가져옴
+        //  5. 새 배경의 자식 오브젝트 자동 할당
         AssignBackgroundElements();
 
-        // 5. 페이드 인 (화면이 점점 밝아짐)
+        //  6. 페이드 인 (화면이 점점 밝아짐)
         for (float i = 1; i >= 0; i -= fadeSpeed)
         {
             fadeImage.color = new Color(0, 0, 0, i);
-            yield return new WaitForSeconds(fadeSpeed);
+            yield return new WaitForSecondsRealtime(fadeSpeed); //  Time.timeScale 영향 받지 않음
         }
 
-        // 페이드 이미지 비활성화
+        //  7. 페이드 이미지 비활성화
         fadeImage.gameObject.SetActive(false);
-        Debug.Log($"스테이지 변경 완료: {currentStage}");
+        Debug.Log($"🎉 스테이지 변경 완료: {currentStage}");
     }
+
 
     // **부모 배경(기본 바탕)의 자식 오브젝트(구름, 산, 땅)를 자동 할당**
     private void AssignBackgroundElements()
