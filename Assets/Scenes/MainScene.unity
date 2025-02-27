@@ -813,7 +813,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   easyBackgrounds: []
-  normalBackgrounds: []
+  normalBackgrounds:
+  - {fileID: 4039224402493951822, guid: f01e82eb2317d20488d6b671dd414e26, type: 3}
   hardBackgrounds: []
   extremeBackgrounds: []
   fadeImage: {fileID: 944230192}
