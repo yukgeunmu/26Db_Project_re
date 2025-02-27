@@ -37,7 +37,7 @@ public class StageUI : BaseUI
     public void OnClickNormalButton()
     {
         uiManager.stageManager.ChangeDifficulty("Normal");
-        GameManager.Instance.ChanageObstacleSpeed(0.001f, 4f, 0.5f);
+        GameManager.Instance.ChanageObstacleSpeed(0.001f, 2f, 0.5f);
         uiManager.homeUI.stagePanel.SetActive(false);
     }
 
@@ -45,14 +45,14 @@ public class StageUI : BaseUI
     public void OnClickHardButton()
     {
         uiManager.stageManager.ChangeDifficulty("Hard");
-        GameManager.Instance.ChanageObstacleSpeed(0.01f, 3f, 0.5f);
+        GameManager.Instance.ChanageObstacleSpeed(0.01f, 1f, 0.5f);
         uiManager.homeUI.stagePanel.SetActive(false);
     }
 
     public void OnClickExtremeButton()
     {
         uiManager.stageManager.ChangeDifficulty("Extreme");
-        GameManager.Instance.ChanageObstacleSpeed(0.1f, 1f, 0.5f);
+        GameManager.Instance.ChanageObstacleSpeed(0.1f, 1f, 0.8f);
         uiManager.homeUI.stagePanel.SetActive(false);
     }
   
