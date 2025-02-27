@@ -21,7 +21,7 @@ public class PlayerController : BaseCharacterController
 
     protected void Start()
     {
-        Time.timeScale = 0;
+
         followCam = Camera.main;
         movementDirection = Vector2.right * resourceController.CurrentInitialVelocity;
         maxJumpTime = resourceController.CurrentJumpTime;
