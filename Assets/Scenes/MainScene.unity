@@ -803,11 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds:
-  - {fileID: 4039224402493951822, guid: f01e82eb2317d20488d6b671dd414e26, type: 3}
-  - {fileID: 8696958054640727118, guid: 4e5e5c6b09894e7449e39aa7d0472698, type: 3}
-  - {fileID: 2335887078958912397, guid: 6f4e87daf0b3aa14e9af6a2efd41e399, type: 3}
-  - {fileID: 4155140047273197348, guid: 6d0e041454fb8934492f10cd61f9e114, type: 3}
-  - {fileID: 5595280384264732317, guid: 713d0167e691fc04aae7b600f3fd9d52, type: 3}
+  - {fileID: 7262592257171342665, guid: 330ccc609ed611c479b0b447671df33b, type: 3}
   fadeImage: {fileID: 944230192}
   fadeSpeed: 0.05
   resetPositionX: -20
@@ -1203,7 +1199,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1003820420
 GameObject:
