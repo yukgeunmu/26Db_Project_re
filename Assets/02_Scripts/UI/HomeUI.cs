@@ -10,6 +10,8 @@ public class HomeUI : BaseUI
     [SerializeField] private Button startButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button OnoptionButton;
+    [SerializeField] private Button ChallengeButton;
+    [SerializeField] private Button CustuMizingButton;
     [SerializeField] private Button offOptionButton;
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private Slider bgmSlider;
@@ -19,13 +21,17 @@ public class HomeUI : BaseUI
     [SerializeField] private GameObject righSelct;
     [SerializeField] private GameObject leftSelect;
 
-    public AudioClip ButtonClip;
 
-    
+
+
+    public AudioClip ButtonClip;
 
     public override void Init(UIManager uIManager)
     {
         base.Init(uIManager);
+
+        bgmSlider.value = AudioManager.instance.MusicVolume;
+        sfxSlider.value = AudioManager.instance.SoundEffectVolume;
 
         startButton.onClick.AddListener(OnClickStartButton);
         exitButton.onClick.AddListener(OnClickExitButton);
@@ -35,6 +41,9 @@ public class HomeUI : BaseUI
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         rightButton.onClick.AddListener(OnClickRightButton);
         leftButton.onClick.AddListener(OnClickLeftButton);
+        CustuMizingButton.onClick.AddListener(OnClickChallengeButton);
+        ChallengeButton.onClick.AddListener(OnClickCustuMizingButton);
+
     }
 
     public void OnClickStartButton()
@@ -80,6 +89,7 @@ public class HomeUI : BaseUI
     public void SetBGMVolume(float value)
     {
         AudioManager.instance.MusicAudioSource.volume = Mathf.Clamp(value, 0f, 1f);
+        AudioManager.instance.SetMusicVolumeSave(value);
     }
 
     public void SetSFXVolume(float value)
@@ -119,6 +129,18 @@ public class HomeUI : BaseUI
         }
            
     }
+
+    public void OnClickChallengeButton()
+    {
+        AudioManager.PlayClip(ButtonClip);
+    }
+
+    public void OnClickCustuMizingButton()
+    {
+
+        AudioManager.PlayClip(ButtonClip);
+    }
+
 
     protected override UIState GetUIstate()
     {

@@ -812,15 +812,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aaa73d53c567e544bd67d343e06ea64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgrounds:
-  - {fileID: 7262592257171342665, guid: 330ccc609ed611c479b0b447671df33b, type: 3}
-  - {fileID: 6727643127074470333, guid: d4af2302aa1ada041aa11ed16075a87f, type: 3}
-  - {fileID: 2335887078958912397, guid: 6f4e87daf0b3aa14e9af6a2efd41e399, type: 3}
-  - {fileID: 9178757245593967538, guid: 2263dbcf41ecc80409c2df62675da219, type: 3}
-  - {fileID: 5012153041753279592, guid: fe157eaf28bc5ff4b9c8f8d4129354d4, type: 3}
-  - {fileID: 4155140047273197348, guid: 6d0e041454fb8934492f10cd61f9e114, type: 3}
-  - {fileID: 7911474265370651703, guid: a5db88f80df80f34ab2d638408f63ad9, type: 3}
-  - {fileID: 5595280384264732317, guid: 713d0167e691fc04aae7b600f3fd9d52, type: 3}
+  easyBackgrounds: []
+  normalBackgrounds:
+  - {fileID: 4039224402493951822, guid: f01e82eb2317d20488d6b671dd414e26, type: 3}
+  hardBackgrounds: []
+  extremeBackgrounds: []
   fadeImage: {fileID: 944230192}
   fadeSpeed: 0.05
   resetPositionX: -20
@@ -1122,9 +1118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7574bfc026fb7484fa7be33a8f18dbd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffectVolume: 0
+  soundEffectVolume: 0.2
   soundEffectPitchVariance: 0
-  musicVolume: 0
+  musicVolume: 0.2
   musicClip: {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
   soundSourcePrefabs: {fileID: 2581884843002363535, guid: abcb1d15e25c48840b5aef6cbd1acbd1, type: 3}
 --- !u!4 &556604107
@@ -2146,7 +2142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxJumpPower
-      value: 0.5
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
+      propertyPath: maxJumpHeight
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxInitialVelocity
@@ -2489,7 +2489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2776912557987250341, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2861562657798721655, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_IsActive
@@ -2513,7 +2513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6212906381339986585, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123622073523462987, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2638,11 +2638,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 391424547102461103, guid: 3d3f864c87d4eb044adefb0c9dc13e5e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 391424547102461103, guid: 3d3f864c87d4eb044adefb0c9dc13e5e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 630180317076364663, guid: 3d3f864c87d4eb044adefb0c9dc13e5e, type: 3}
       propertyPath: m_IsActive
@@ -2686,7 +2686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973650524768885520, guid: 3d3f864c87d4eb044adefb0c9dc13e5e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3435704204371929073, guid: 3d3f864c87d4eb044adefb0c9dc13e5e, type: 3}
       propertyPath: m_IsActive
