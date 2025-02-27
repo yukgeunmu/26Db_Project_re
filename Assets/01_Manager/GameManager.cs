@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public static bool isFirstSet = true;
 
-    [SerializeField][Range(0f, 1f)] private float timeDamage = 1f;
+    [SerializeField][Range(0f, 5f)] private float timeDamage = 1f;
 
     public AudioClip gameClip_easy;
     public AudioClip gameClip_normal;
@@ -230,5 +230,16 @@ public class GameManager : MonoBehaviour
         obstacleFactor = _Factor;
     }
 
+    public void ChangeTimeDamage(float value)
+    {
+        timeDamage = value;
+    }
+
+    public float ChangeSpeed(float _speed)
+    {
+        obstacleSpeed = _speed;
+
+        return obstacleSpeed;
+    }
 
 }

@@ -19,7 +19,8 @@ public class BackAnimUI : MonoBehaviour
 
     private IEnumerator BackgroundLoop()
     {
- 
+        while(true)
+        {
             int nextIndex = (currentIndex + 1) % background.Length;
 
             yield return StartCoroutine(FadeOut(background[currentIndex]));
@@ -27,9 +28,7 @@ public class BackAnimUI : MonoBehaviour
 
             currentIndex = nextIndex;
             yield return new WaitForSeconds(displayDuration);
-
-        StartCoroutine(BackgroundLoop());
-
+        }
     }
     private IEnumerator FadeIn(CanvasGroup canvasGroup)
     {
