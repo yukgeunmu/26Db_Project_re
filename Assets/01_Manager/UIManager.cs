@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public GameUI gameUI;
     public GameOverUI gameOverUI;
     public StageUI stageUI;
+    public StageManager stageManager;
     private UIState currentState;
 
 
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour
 
         stageUI = GetComponentInChildren<StageUI>(true);
         stageUI.Init(this);
+        stageManager = FindObjectOfType<StageManager>();
 
     }
 

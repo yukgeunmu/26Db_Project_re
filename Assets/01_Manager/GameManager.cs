@@ -197,5 +197,12 @@ public class GameManager : MonoBehaviour
         stageManager = FindObjectOfType<StageManager>();
     }
 
+    public void ChanageObstacleSpeed(float _Velocity, float _Time, float _Factor)
+    {
+        maxVelocity = _Velocity;
+        obstacleTime = _Time;
+        obstacleFactor = _Factor;
+    }
+
 
 }
