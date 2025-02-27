@@ -23,6 +23,15 @@ public class PlayerController : BaseCharacterController
     protected int JumpCount = 0;
     float jumpTimeCounter = 0f;
 
+    // 플레이어 컨트롤 커맨드
+    public string jumpKey { get; private set; } = string.Empty;
+    public void SetJumpKeyDown() => jumpKey = "jumpKeyDown";
+    public void SetJumpKeyUp() => jumpKey = "jumpKeyUp";
+
+    public string slideKey { get; private set; } = string.Empty;
+    public void SetSlideKeyDown() => slideKey = "slideKeyDown";
+    public void SetSlideKeyUp() => slideKey = "slideKeyUp";
+
     protected void Start()
     {
         // 카메라 변수 할당
@@ -50,6 +59,7 @@ public class PlayerController : BaseCharacterController
     protected override void HandleAction()
     {
         // 활공 시간 끝나거나 점프 제한 높이 도달시 낙하. 땅에 닿으면 낙하 중단.
+        jumpTimeCounter -= Time.deltaTime;
         if (jumpTimeCounter <= 0 || transform.position.y > resourceController.CurrentJumpHeight * JumpCount) 
             isJumping = false;
         if (!onGround && !isJumping)
@@ -58,9 +68,9 @@ public class PlayerController : BaseCharacterController
             movementDirection.y = 0;
 
         // 버튼 눌림 감지
-        switch (GetKeyDown())
+        switch (jumpKey)
         {
-            case KeyCode.Space:
+            case "jumpKeyDown":
                 if (JumpCount < resourceController.CurrentJumpCount && !isSlide)
                 {
                     isJumping = true;
@@ -68,11 +78,25 @@ public class PlayerController : BaseCharacterController
                     ++JumpCount;
                     movementDirection.y = 1;
                     resourceController.OnAnimationJump(JumpCount);
+                    jumpKey = "";
                 }
                 break;
 
-            case KeyCode.LeftShift:
-                if(!isJumping)
+            case "jumpKeyUp":
+                if (isJumping)
+                {
+                    isJumping = false;
+                    jumpKey = "";
+                }
+                break;
+            case "":
+                break;
+        }
+
+        switch (slideKey)
+        {
+            case "slideKeyDown":
+                if (!isJumping)
                 {
                     isSlide = true;
                     BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
@@ -86,18 +110,11 @@ public class PlayerController : BaseCharacterController
                     boxCollider.size = newSize;
                     boxCollider.offset = newOffset;
                     resourceController.OnAnimationSlide(isSlide);
+                    slideKey = "";
                 }
                 break;
-        }
 
-        switch (GetKeyUp())
-        {
-            case KeyCode.Space:                
-                if(isJumping)
-                    isJumping = false;
-                break;
-
-            case KeyCode.LeftShift:
+            case "slideKeyUp":
                 if (isSlide)
                 {
                     isSlide = false;
@@ -105,23 +122,12 @@ public class PlayerController : BaseCharacterController
                     boxCollider.size = originalBoxColliderSize;
                     boxCollider.offset = originalBoxColliderOffset;
                     resourceController.OnAnimationSlide(isSlide);
+                    slideKey = "";
                 }
                 break;
+            case "":
+                break;
         }
-    }
-
-    KeyCode? GetKeyDown()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) return KeyCode.Space;
-        if (Input.GetKeyDown(KeyCode.LeftShift)) return KeyCode.LeftShift;
-        return null;
-    }
-
-    KeyCode? GetKeyUp()
-    {
-        if (Input.GetKeyUp(KeyCode.Space)) return KeyCode.Space;
-        if (Input.GetKeyUp(KeyCode.LeftShift)) return KeyCode.LeftShift;
-        return null;
     }
 
     // 땅에 닿으면 다시 점프 가능하도록 초기화
