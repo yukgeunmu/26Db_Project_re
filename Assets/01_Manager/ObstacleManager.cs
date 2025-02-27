@@ -30,7 +30,7 @@ public class ObstacleManager : MonoBehaviour
     private void Start()
     {
         lastSpawnX = spawnStartX; // X 위치 초기화
-        spawnGapX = Random.Range(3, 5); // 랜덤 간격 설정
+        spawnGapX = Random.Range(5, 10); // 랜덤 간격 설정
         StartCoroutine(SpawnObstacleRoutine());
     }
 
@@ -51,6 +51,9 @@ public class ObstacleManager : MonoBehaviour
         int index = Random.Range(0, Obstacle.Length); // 배열에서 랜덤으로 장애물 선택
 
         // X축 위치를 일정 간격으로 조정
+        if (index <= 2) bottom_position = -3f;
+        else if (index > 2) bottom_position = Random.Range(-2f, -1.5f);
+
         Vector3 spawnPosition = new Vector3(lastSpawnX, bottom_position, 10);
         GameObject newObstacle = Instantiate(Obstacle[index], spawnPosition, Quaternion.identity);
 
@@ -59,10 +62,10 @@ public class ObstacleManager : MonoBehaviour
         newObstacle.transform.localScale = new Vector3(randomScaleX, randomScaleY, 1f);
 
         //다음 생성 위치 업데이트(일정 간격 유지)
-        spawnGapX = Random.Range(3, 7); // 새로운 랜덤 간격 적용
+        spawnGapX = Random.Range(5, 10); // 새로운 랜덤 간격 적용
         lastSpawnX += spawnGapX;
 
-        if (lastSpawnX > 20f)
+        if (lastSpawnX > 100f)
         {
             lastSpawnX = spawnStartX;
         }

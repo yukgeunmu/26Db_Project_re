@@ -30,10 +30,10 @@ public class GameManager : MonoBehaviour
     // 최고 점수
     private int bestScore = 0;
     public int BestScore => bestScore;
-    [SerializeField][Range(0f, 1f)] private float maxTerminalVelocity = 10f;
+    [SerializeField][Range(0f, 10f)] private float maxTerminalVelocity = 10f;
     [SerializeField][Range(0f, 1f)] private float maxVelocity = 0.01f;
 
-    [SerializeField][Range(0f, 10f)] private float obstacleSpeed = 10f;
+    [SerializeField][Range(0.1f, 10f)] private float obstacleSpeed = 10f;
     public float ObstacleSpeed => obstacleSpeed;
 
     [SerializeField][Range(0f, 10f)] private float obstacleTime = 1f;
@@ -167,9 +167,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetCurrentScore()
+    public void ResetCurrentData()
     {
         currentscore = 0;
+        obstacleSpeed = 2;
     }
 
     public void ResetButtonPositions()

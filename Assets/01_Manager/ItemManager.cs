@@ -52,10 +52,24 @@ public class ItemManager : MonoBehaviour
 
         float adjustedY = Random.Range(-3, 1);
         Vector3 spawnPosition = new Vector3(lastSpawn_x, adjustedY, 0);
-        
-        if(number <= 70) newObject = Instantiate(item[0], spawnPosition, Quaternion.identity);
-        else if(number <= 90) newObject = Instantiate(item[1], spawnPosition, Quaternion.identity);
-        else if(number <= 100 ) newObject = Instantiate(item[2], spawnPosition, Quaternion.identity);
+
+        if (number <= 90)
+        {
+            if(number <= 10)
+                newObject = Instantiate(item[4], spawnPosition, Quaternion.identity);
+
+            newObject = Instantiate(item[0], spawnPosition, Quaternion.identity);
+        }
+
+        else if (number <= 95) newObject = Instantiate(item[1], spawnPosition, Quaternion.identity);
+        else if (number <= 98) newObject = Instantiate(item[2], spawnPosition, Quaternion.identity);
+        else if (number <= 100)
+        {
+            spawnPosition = new Vector3(lastSpawn_x, 1,0);
+            newObject = Instantiate(item[3], spawnPosition, Quaternion.identity);
+        }
+
+
 
         newTrans = newObject.transform;
         newTrans.parent = this.transform;

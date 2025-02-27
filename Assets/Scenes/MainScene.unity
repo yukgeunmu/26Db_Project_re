@@ -760,13 +760,13 @@ MonoBehaviour:
   ResetKey: 0
   maxTerminalVelocity: 10
   maxVelocity: 0.001
-  obstacleSpeed: 0
+  obstacleSpeed: 2
   obstacleTime: 2
   obstacleFactor: 0.5
   ItemspawnTime: 0.5
   ItemspawnFactor: 0.05
   itemGap: 10
-  GodMode: 1
+  GodMode: 0
   isTime: 0
 --- !u!4 &306163373
 Transform:
@@ -886,6 +886,9 @@ MonoBehaviour:
   - {fileID: 345659989940541024, guid: 2dc55bfa02459ee47b7915160b8bd29b, type: 3}
   - {fileID: 1259247582487698, guid: 73670e54f446e8d43b89417748d75cb5, type: 3}
   - {fileID: 1023864429460286, guid: dc041935b38239545b126b8522de943f, type: 3}
+  - {fileID: 1830395073557622, guid: 3a88179defef100409cc65f153478f54, type: 3}
+  - {fileID: 1877399995518758, guid: 78b351fd2c21af64ea69af8b74a29d49, type: 3}
+  - {fileID: 1171405123782560, guid: 31b5323c02225d743a47f63cc3409d42, type: 3}
   bottom_position: -3
   spawnStartX: 15
   minSpawnInterval: 0.3
@@ -1930,7 +1933,8 @@ MonoBehaviour:
   - {fileID: 1073286901381284, guid: d3be12c1c6ae33e4f91e254ded6b9c12, type: 3}
   - {fileID: 1972784682752432, guid: 8984a4f6ea7d7a948a29de29abaefcf6, type: 3}
   - {fileID: 1298934054778736, guid: 0017488e1eeb43745a893e65ac58017d, type: 3}
-  - {fileID: 1298934054778736, guid: 0017488e1eeb43745a893e65ac58017d, type: 3}
+  - {fileID: 4120179720217097576, guid: 6ca2b8578dc3c1c45878c2bad815c0b8, type: 3}
+  - {fileID: 1385026595482456, guid: aea62d78641c60944af81163d5a81ef5, type: 3}
   spawnStart_x: 10
   spawnStart_y: -3
   minSpawnInterval: 0.3
@@ -2123,6 +2127,10 @@ PrefabInstance:
     - target: {fileID: 67376437363947205, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
+      propertyPath: maxJumpTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 250887666754179645, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: maxVelocity

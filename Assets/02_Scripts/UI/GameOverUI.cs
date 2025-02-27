@@ -31,7 +31,8 @@ public class GameOverUI : BaseUI
     {
         SceneManager.LoadScene("MainScene");
         AudioManager.PlayClip(ButtonClip);
-        GameManager.Instance.ResetCurrentScore();
+        GameManager.Instance.ResetCurrentData();
+        
     }
 
     public void OnClickExitButton()
@@ -40,7 +41,7 @@ public class GameOverUI : BaseUI
         GameManager.isFirstSet = true;
         AudioManager.PlayClip(ButtonClip);
         GameManager.Instance.isTime = false;
-        GameManager.Instance.ResetCurrentScore();
+        GameManager.Instance.ResetCurrentData();
 
 
     }
