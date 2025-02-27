@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour
     public float resetPositionX = -20f; // 왼쪽 끝으로 이동 시 리셋할 위치
     public float startPositionX = 20f; // 오른쪽에서 새롭게 시작할 위치
     public int maxRepeats = 1; // 각 배경이 반복되는 최대 횟수
-
+    public Transform mainCamera; // 카메라 참조
     private GameObject currentBackground; // 현재 배경 오브젝트 (부모)
     private List<Transform> clouds = new List<Transform>(); // 구름 리스트
     private List<Transform> mountains = new List<Transform>(); // 산 리스트
@@ -24,14 +24,29 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main.transform; // 메인 카메라 자동 할당
+        }
         ChangeStage(0); // 첫 번째 배경 로드
     }
 
     void Update()
     {
+        FollowCamera(); // 배경을 카메라와 함께 이동
         MoveElements(clouds, 0.5f);   // 구름은 천천히 이동
         MoveElements(mountains, 1.5f); // 산은 중간 속도로 이동
         MoveElements(ground, 2.5f);    // 땅은 빠르게 이동
+    }
+     // 배경이 카메라를 따라가도록 설정
+    private void FollowCamera()
+    {
+        if (currentBackground != null)
+        {
+            Vector3 newPos = currentBackground.transform.position;
+            newPos.x = mainCamera.position.x; // 배경의 X 좌표를 카메라의 X 좌표로 고정
+            currentBackground.transform.position = newPos;
+        }
     }
 
     public void ChangeStage(int newStage)
