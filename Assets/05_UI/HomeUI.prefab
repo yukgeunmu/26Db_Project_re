@@ -603,10 +603,10 @@ RectTransform:
   - {fileID: 5672988501883837916}
   - {fileID: 1741956034881851194}
   - {fileID: 6814904336040149892}
-  - {fileID: 7724946571397001631}
   - {fileID: 5319338924718056618}
   - {fileID: 5213925927908574439}
   - {fileID: 8907708084682825460}
+  - {fileID: 7724946571397001631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -631,6 +631,7 @@ MonoBehaviour:
   OnoptionButton: {fileID: 8668083383105536650}
   ChallengeButton: {fileID: 2733922395221295387}
   CustuMizingButton: {fileID: 7875907847479842247}
+  StageButton: {fileID: 0}
   offOptionButton: {fileID: 4533616055638241935}
   optionPanel: {fileID: 2861562657798721655}
   bgmSlider: {fileID: 705862822049141793}
@@ -639,6 +640,7 @@ MonoBehaviour:
   leftButton: {fileID: 5572177643337844407}
   righSelct: {fileID: 3534329689402229056}
   leftSelect: {fileID: 4208602711918938454}
+  stagePanel: {fileID: 0}
   ButtonClip: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
 --- !u!1 &1519373355013037067
 GameObject:

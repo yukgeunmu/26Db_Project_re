@@ -13,14 +13,19 @@ public class GameManager : MonoBehaviour
 
     public ResourceController resourceController = null;
 
-
     public StageManager stageManager = null;
 
     public static bool isFirstSet = true;
 
     [SerializeField][Range(0f, 1f)] private float timeDamage = 1f;
 
-    public AudioClip gameClip1;
+    public AudioClip gameClip_easy;
+    public AudioClip gameClip_normal;
+    public AudioClip gameClip_hard;
+    public AudioClip gameClip_extreme;
+    public StageType stageType = StageType.Normal;
+
+
 
     public bool ResetKey = false;
 
@@ -105,16 +110,19 @@ public class GameManager : MonoBehaviour
         if (GodMode == true)
             resourceController.ChangeHealth(100);
 
-      
+
 
         if (isTime)
         {
             Time.timeScale = 1f;
             obstacleSpeed = obstacleSpeed > maxTerminalVelocity ? maxTerminalVelocity : obstacleSpeed + maxVelocity;
         }
-          
+
         else
+        {
             Time.timeScale = 0f;
+            resourceController.gameObject.SetActive(false);
+        }
 
         if (resourceController.CurrentHealth <= 0)
         {         
@@ -127,8 +135,25 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         uiManager.SetPlayGame();
+        resourceController.gameObject.SetActive(true);
         isTime = true;
-        AudioManager.instance.ChangeBackGroundMusic(gameClip1);
+
+        switch(stageType)
+        {
+            case StageType.Easy:
+                AudioManager.instance.ChangeBackGroundMusic(gameClip_easy);
+                break;
+            case StageType.Normal:
+                AudioManager.instance.ChangeBackGroundMusic(gameClip_normal);
+                break;
+            case StageType.Hard:
+                AudioManager.instance.ChangeBackGroundMusic(gameClip_hard);
+                break;
+            case StageType.Extreme:
+                AudioManager.instance.ChangeBackGroundMusic(gameClip_extreme);
+                break;
+        }
+
     }
 
     // 게임오버 메서드
@@ -193,8 +218,9 @@ public class GameManager : MonoBehaviour
     private void FindAndSetManagers()
     {
         uiManager = FindObjectOfType<UIManager>();
-        resourceController = FindObjectOfType<ResourceController>();
+        resourceController = FindObjectOfType<ResourceController>(true);
         stageManager = FindObjectOfType<StageManager>();
+
     }
 
     public void ChanageObstacleSpeed(float _Velocity, float _Time, float _Factor)
