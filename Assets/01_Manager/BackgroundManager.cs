@@ -11,7 +11,7 @@ public class StageManager : MonoBehaviour
     public GameObject[] hardBackgrounds;    // 하드 난이도 배경 배열
     public GameObject[] extremeBackgrounds; // 익스트림 난이도 배경 배열
     public Image fadeImage; // 페이드 효과용 UI Image
-    public float fadeSpeed = 1f; // 페이드 속도
+    public float fadeSpeed = 0.05f; // 페이드 속도
     
     [Header("배경 오브젝트 이동 (구름, 산, 땅)")]
     public float resetPositionX = -20f; // 왼쪽 끝으로 이동 시 리셋할 위치
