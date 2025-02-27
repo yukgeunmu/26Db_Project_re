@@ -16,10 +16,12 @@ public class PlayerController : BaseCharacterController
     protected bool isJumping = false;
     protected bool isSlide = false;
     protected bool onGround = false;
-    protected int JumpCount = 0; 
+    protected int JumpCount = 0;
+
 
     protected void Start()
     {
+        Time.timeScale = 0;
         followCam = Camera.main;
         movementDirection = Vector2.right * resourceController.CurrentInitialVelocity;
         maxJumpTime = resourceController.CurrentJumpTime;
@@ -31,6 +33,8 @@ public class PlayerController : BaseCharacterController
 
     protected override void Update()
     {
+
+
         base.Update();
         if(!resourceController.CameraDoNotFollow)
             followCam.transform.position = new Vector3(transform.position.x, followCamY, followCam.transform.position.z);
@@ -80,6 +84,8 @@ public class PlayerController : BaseCharacterController
 
             Slide(false);
         }
+
+ 
     }
 
     protected override void FixedUpdate()

@@ -39,8 +39,7 @@ public class ObstacleManager : MonoBehaviour
         while (true)
         {
             SpawnObstacle();
-            float playerSpeed = Mathf.Abs(player.GetComponent<Rigidbody2D>().velocity.x); // 플레이어 속도 가져오기
-            float adjustedInterval = Mathf.Max(minSpawnInterval, spawnInterval - (playerSpeed * speedFactor)); // 최소값 제한
+            float adjustedInterval = Mathf.Max(minSpawnInterval, spawnInterval - speedFactor); // 최소값 제한
             yield return new WaitForSeconds(adjustedInterval); // 동적으로 생성 주기 변경
         }
     }

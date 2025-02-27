@@ -41,7 +41,7 @@ public class ItemManager : MonoBehaviour
 
         int number = Random.Range(1,100);
 
-        float adjustedY = Random.Range(-3, 7);
+        float adjustedY = Random.Range(-3, 4);
         Vector3 spawnPosition = new Vector3(spawnStart_x, adjustedY, 0);
         
         if(number <= 70) newObject = Instantiate(item[0], spawnPosition, Quaternion.identity);

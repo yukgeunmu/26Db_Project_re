@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d64daa9488955448d183a389384804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionClip: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
 --- !u!114 &-6250108627430054303
 MonoBehaviour:
   m_ObjectHideFlags: 0

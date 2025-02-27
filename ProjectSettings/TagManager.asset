@@ -7,6 +7,9 @@ TagManager:
   - Item
   - Obstacle
   - Ground
+  - RedCoin
+  - GoldCoin
+  - BlueCoin
   layers:
   - Default
   - TransparentFX

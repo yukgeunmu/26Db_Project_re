@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 
-public class MoveObstacleMethod : MonoBehaviour
+public class MoveController : MonoBehaviour
 {
     [SerializeField][Range(0f, 10f)] private float speed = 1f;
 

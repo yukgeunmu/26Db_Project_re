@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public ResourceController resourceController = null;
 
+
     public StageManager stageManager = null;
 
     public static bool isFirstSet = true;
@@ -31,14 +32,16 @@ public class GameManager : MonoBehaviour
     public int BestScore => bestScore;
 
     // 코인
-    private int coin;
-    public int Coin => coin;
+    //private int coin;
+    //public int Coin => coin;
 
     //최고 점수 키
     public const string BestScoreKey = "BestScore";
 
     // 획득한 코인 키
     public const string CoinKey = "AcquireCoin";
+
+    public bool isTime = false;
 
     private void Awake()
     {
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour
         //stageManager = FindObjectOfType<StageManager>();
 
         bestScore = PlayerPrefs.GetInt(BestScoreKey,0);
-        coin = PlayerPrefs.GetInt(CoinKey, 0);
+        //coin = PlayerPrefs.GetInt(CoinKey, 0);
 
         // 초기 로드 시에도 참조 설정
         FindAndSetManagers();
@@ -69,15 +72,31 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+
         if(resourceController != null && uiManager != null)
             StartCoroutine(TimeDamageLoop());
     }
 
 
+    private void Update()
+    {
+        if (isTime)
+            Time.timeScale = 1f;
+        else
+            Time.timeScale = 0f;
+
+        if (resourceController.CurrentHealth <= 0)
+        {         
+            GameOver();
+            isTime = false;
+        }
+    }
+
     // 게임 시작 메서드
     public void StartGame()
     {
         uiManager.SetPlayGame();
+        isTime = true;
         AudioManager.instance.ChangeBackGroundMusic(gameClip1);
     }
 
@@ -93,17 +112,17 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // 점수 더하는 메서드
-    public void AddScore(int score)
-    {
-        currentscore += score;
-        uiManager.gameUI.UpdateScore(currentscore, bestScore);
-    }
+    //// 점수 더하는 메서드
+    //public void AddScore(int score)
+    //{
+    //    currentscore += score;
+    //    uiManager.gameUI.UpdateScore(currentscore, bestScore);
+    //}
 
-    public void AddCoin(int _coin)
+    public void AddScore(int _currentScore)
     {
-        coin += _coin;
-        //uiManager.gameUI.AcquireCoin(coin);
+        currentscore += _currentScore;
+        uiManager.gameUI.UpdateScore(currentscore, bestScore);
     }
 
     // 시간에 따른 체력 감소
@@ -117,17 +136,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    // 일정시간 지나면 장애물 생성이나 시간 변경하는 메서드
-    private IEnumerator IncreaseObstacleSpeedOverTime(float interval)
+    public void ResetCurrentScore()
     {
-        while (true)  // 무한 반복 (게임이 끝나면 중지)
-        {
-            yield return new WaitForSeconds(interval);  // 일정 시간 대기
-            // invokeRepeating
-            // 장애물 생성 시간 변수
-            // 장애물 갯수 변수
-        }
+        currentscore = 0;
     }
 
     public void ResetButtonPositions()
