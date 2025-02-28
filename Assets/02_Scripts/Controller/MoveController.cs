@@ -13,6 +13,8 @@ public class MoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (speed == 10f) speed = GameManager.Instance.ChangeSpeed(2f);
+
         MoveElements(speed);
     }
 
