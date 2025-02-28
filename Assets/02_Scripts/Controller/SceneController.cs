@@ -5,5 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public void LoadMainScene() => SceneManager.LoadScene("MainScene");
+    public void LoadMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+        GameManager.isFirstSet = true;
+        GameManager.Instance.isTime = false;
+    }
+
 }
