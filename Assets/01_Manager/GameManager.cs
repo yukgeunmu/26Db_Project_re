@@ -25,13 +25,13 @@ public class GameManager : MonoBehaviour
     public AudioClip gameClip_extreme;
     public StageType stageType = StageType.Normal;
 
-
-
     public bool ResetKey = false;
 
     // 현재 점수
     private int currentscore = 0;
     public int CurrentScore => currentscore;
+
+    public Action OnScroeValueChanged;
 
     // 최고 점수
     private int bestScore = 0;
@@ -177,6 +177,7 @@ public class GameManager : MonoBehaviour
     {
         currentscore += _currentScore;
         uiManager.gameUI.UpdateScore(currentscore, bestScore);
+        OnScroeValueChanged.Invoke();
     }
 
     // 시간에 따른 체력 감소
