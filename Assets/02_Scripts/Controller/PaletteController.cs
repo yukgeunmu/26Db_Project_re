@@ -56,9 +56,12 @@ public class PaletteController: MonoBehaviour, IPointerDownHandler, IDragHandler
 
         // 선택한 색상 가져오기
         Color selectedColor = paletteTexture.GetPixel(x, y);
+        float h, s, v;
+        Color.RGBToHSV(selectedColor, out h, out s, out v);
 
         // 스프라이트 색상 변경
         targetSprite.color = selectedColor;
+        GameManager.Instance.resourceController.SaveColor(targetSprite.name, h, s, v);
     }
 
     /// <summary>
@@ -90,5 +93,5 @@ public class PaletteController: MonoBehaviour, IPointerDownHandler, IDragHandler
     /// <summary>
     /// 버튼을 눌러서 팔레트 색상을 변경하는 함수
     /// </summary>
-    public void SetPaletteToRed(float hue) => GeneratePalette(hue);
+    public void SetPaletteHue(float hue) => GeneratePalette(hue);
 }

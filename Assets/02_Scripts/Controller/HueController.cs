@@ -48,7 +48,7 @@ public class HueController : MonoBehaviour, IPointerDownHandler, IDragHandler
         float h, s, v;
         Color.RGBToHSV(selectedColor, out h, out s, out v);
 
-        _palettePicker.SetPaletteToRed(h);
+        _palettePicker.SetPaletteHue(h);
     }
 
     /// <summary>

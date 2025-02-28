@@ -477,12 +477,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  maxInitialVelocity: 1
   maxVelocity: 0.01
-  maxTerminalVelocity: 10
-  maxInitialJumpPower: 1
   maxJumpPower: 0.01
   maxJumpTime: 1
+  maxJumpHeight: 1
   maxJumpCount: 1
 --- !u!50 &4444193706110494762
 Rigidbody2D:
@@ -568,9 +566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b35e8f83099ac14c9e0f525f4101425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraDoNotFollow: 0
-  DoNotMove: 0
-  DoNotJump: 0
+  HairSprite: {fileID: 5452597551822333716}
+  FaceSprite: {fileID: 2056153214086002316}
+  ScarfSprite: {fileID: 3178500228909511701}
+  ArmorSprite: {fileID: 8246836829038460492}
+  FrameSprite: {fileID: 8391414646234679121}
 --- !u!114 &4034433495860111899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f864456f0fa2b347ab566745fef2508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraDoNotFollow: 0
+  DoNotMove: 0
 --- !u!114 &2679119598144028973
 MonoBehaviour:
   m_ObjectHideFlags: 0
