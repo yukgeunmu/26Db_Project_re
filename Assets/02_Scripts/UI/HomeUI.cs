@@ -133,9 +133,11 @@ public class HomeUI : BaseUI
            
     }
 
+    public GameObject ChallengeUI;
     public void OnClickChallengeButton()
     {
         AudioManager.PlayClip(ButtonClip);
+        ChallengeUI.SetActive(true);
     }
 
     public void OnClickCustuMizingButton()

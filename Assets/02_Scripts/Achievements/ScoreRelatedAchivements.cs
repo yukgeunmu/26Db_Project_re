@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScoreRelatedAchivements : MonoBehaviour, IAchivement
 {
+    public GameObject AchivementUI;
+
     public bool ZeroScore { get; private set; } = false;
     public bool SevenScore { get; private set; } = false;
     public bool HundreadScore { get; private set; } = false;
@@ -16,7 +18,6 @@ public class ScoreRelatedAchivements : MonoBehaviour, IAchivement
     public void Start()
     {
         GameManager.Instance.OnScroeValueChanged += UpdateIsAchieved;   
-        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateIsAchieved()
@@ -32,5 +33,10 @@ public class ScoreRelatedAchivements : MonoBehaviour, IAchivement
         if(ZeroScore) zeroScoreUI.SetActive(true);
         if (SevenScore) sevenScoreUI.SetActive(true);
         if (HundreadScore) hundreadScoreUI.SetActive(true);
+    }
+
+    public void CloseAchivementUI()
+    {
+        AchivementUI.SetActive(false);
     }
 }
