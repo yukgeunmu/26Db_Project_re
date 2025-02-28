@@ -72,7 +72,6 @@ public class ResourceController : MonoBehaviour
         float s = PlayerPrefs.GetFloat(prefix + "S", 1f); // 기본값 1 (채도 100%)
         float v = PlayerPrefs.GetFloat(prefix + "V", 1f); // 기본값 1 (명도 100%)
 
-        Debug.Log(prefix + h + s + v);
         return Color.HSVToRGB(h, s, v);
     }
 

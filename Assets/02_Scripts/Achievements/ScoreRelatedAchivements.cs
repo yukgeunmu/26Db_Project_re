@@ -17,7 +17,8 @@ public class ScoreRelatedAchivements : MonoBehaviour, IAchivement
 
     public void Start()
     {
-        GameManager.Instance.OnScroeValueChanged += UpdateIsAchieved;   
+        GameManager.Instance.OnScroeValueChanged += UpdateIsAchieved;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void UpdateIsAchieved()

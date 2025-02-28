@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
     {
         currentscore += _currentScore;
         uiManager.gameUI.UpdateScore(currentscore, bestScore);
-        OnScroeValueChanged.Invoke();
+        OnScroeValueChanged?.Invoke();
     }
 
     // 시간에 따른 체력 감소

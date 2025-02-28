@@ -74,7 +74,7 @@ public class StageManager : MonoBehaviour
         currentDifficulty = difficulty;
         currentBackgrounds = backgroundDict[difficulty];
 
-        Debug.Log($"난이도 변경: {difficulty}, 배경 개수: {currentBackgrounds.Length}");
+
         ChangeStage(0); // 첫 번째 스테이지부터 시작
     }
 
@@ -86,7 +86,7 @@ public class StageManager : MonoBehaviour
 
     private IEnumerator FadeTransition(int newStage)
     {
-        Debug.Log($"페이드 아웃 시작, 변경할 배경: {newStage}");
+
 
         // 1. 페이드 이미지 활성화
         if (fadeImage == null)
@@ -106,14 +106,14 @@ public class StageManager : MonoBehaviour
         // 3. 기존 배경 삭제
         if (currentBackground != null)
         {
-            Debug.Log($"기존 배경 삭제: {currentBackground.name}");
+
             Destroy(currentBackground);
         }
 
         // 4. 새로운 배경 생성
         if (currentBackgrounds == null || newStage >= currentBackgrounds.Length || currentBackgrounds[newStage] == null)
         {
-            Debug.LogError($"스테이지 {newStage}의 배경이 null이거나 존재하지 않습니다!");
+
             yield break;
         }
 
@@ -121,7 +121,7 @@ public class StageManager : MonoBehaviour
         currentBackground.transform.position = new Vector3(mainCamera.position.x, 0, 0); //  카메라 위치로 설정
         currentBackground.SetActive(true);
 
-        Debug.Log($"새로운 배경 생성 완료: {currentBackground.name}");
+
 
         currentStage = newStage;
         repeatCount = 0; //  반복 횟수 초기화
@@ -138,7 +138,7 @@ public class StageManager : MonoBehaviour
 
         //  7. 페이드 이미지 비활성화
         fadeImage.gameObject.SetActive(false);
-        Debug.Log($"🎉 스테이지 변경 완료: {currentStage}");
+
     }
 
 
@@ -158,7 +158,7 @@ public class StageManager : MonoBehaviour
             else if (child.name.Contains("Ground")) ground.Add(child);
         }
 
-        Debug.Log($"구름 개수: {clouds.Count}, 산 개수: {mountains.Count}, 땅 개수: {ground.Count}");
+
     }
 
     // **개별 오브젝트 이동 처리 (구름, 산, 땅 등)**
@@ -178,13 +178,13 @@ public class StageManager : MonoBehaviour
                 if (elements == clouds)
                 {
                     repeatCount++;
-                    Debug.Log($"배경 반복 횟수: {repeatCount} / {maxRepeats}");
+
 
                     if (repeatCount >= maxRepeats)
                     {
                         // 다음 배경으로 이동
                         int nextStage = (currentStage + 1) % currentBackgrounds.Length;
-                        Debug.Log($"배경 변경: {currentStage} → {nextStage}");
+
                         ChangeStage(nextStage);
                     }
                 }
