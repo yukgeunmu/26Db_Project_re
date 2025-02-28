@@ -151,6 +151,7 @@ public class HomeUI : BaseUI
     public void OnClickStagePanel()
     {
         stagePanel.SetActive(true);
+        AudioManager.PlayClip(ButtonClip);
     }
 
 
