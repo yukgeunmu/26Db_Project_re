@@ -55,7 +55,6 @@ public class ItemManager : MonoBehaviour
 
         if (number <= 90)
         {
-            Debug.Log(number);
             if (number <= 10)
             {
                 newObject = Instantiate(item[4], spawnPosition, Quaternion.identity);

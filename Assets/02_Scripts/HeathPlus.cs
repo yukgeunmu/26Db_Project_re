@@ -9,6 +9,7 @@ public class HeathPlus : ItemInstance, ITakeable
     {
         if(GameManager.Instance.resourceController.CurrentHealth >= 100) return;   
         else GameManager.Instance.resourceController.ChangeHealth(30);
+        
     }
 
 

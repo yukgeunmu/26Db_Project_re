@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             resourceController.ChangeHealth(-timeDamage);
-            uiManager.gameUI.UpdateHPSlider(resourceController.CurrentHealth/resourceController.MaxHealth);
+            uiManager.gameUI.UpdateHPSlider(resourceController.CurrentHealth/100);
         }
     }
 
