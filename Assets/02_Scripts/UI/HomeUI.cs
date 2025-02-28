@@ -43,8 +43,8 @@ public class HomeUI : BaseUI
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
         rightButton.onClick.AddListener(OnClickRightButton);
         leftButton.onClick.AddListener(OnClickLeftButton);
-        CustuMizingButton.onClick.AddListener(OnClickChallengeButton);
-        ChallengeButton.onClick.AddListener(OnClickCustuMizingButton);
+        CustuMizingButton.onClick.AddListener(OnClickCustuMizingButton);
+        ChallengeButton.onClick.AddListener(OnClickChallengeButton);
         StageButton.onClick.AddListener(OnClickStagePanel);
 
     }
@@ -140,7 +140,8 @@ public class HomeUI : BaseUI
 
     public void OnClickCustuMizingButton()
     {
-
+        SceneManager.LoadScene("CustomizingScene");
+        GameManager.Instance.isTime = true;
         AudioManager.PlayClip(ButtonClip);
     }
 
