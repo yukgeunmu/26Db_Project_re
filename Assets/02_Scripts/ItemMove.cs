@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemMove : MonoBehaviour
 {
     private float speed = 1f;
-
+    public AudioClip itemClip;
 
     // Update is called once per frame
     void Update()
@@ -18,4 +18,15 @@ public class ItemMove : MonoBehaviour
     {
         this.transform.position += Vector3.left * speed * Time.deltaTime;
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            AudioManager.PlayClip(itemClip);
+            
+        }
+    }
+
 }

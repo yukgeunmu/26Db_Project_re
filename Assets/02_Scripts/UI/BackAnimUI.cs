@@ -39,8 +39,8 @@ public class BackAnimUI : MonoBehaviour
         while (timer < fadeDuration)
         {
             canvasGroup.alpha = Mathf.Lerp(0, 1, timer / fadeDuration);
-            timer += Time.deltaTime;
-            yield return null;
+            timer += Time.unscaledDeltaTime;
+            yield return null ;
         }
         canvasGroup.alpha = 1;
     }
@@ -53,7 +53,7 @@ public class BackAnimUI : MonoBehaviour
         while (timer < fadeDuration)
         {
             canvasGroup.alpha = Mathf.Lerp(1, 0, timer / fadeDuration);
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 

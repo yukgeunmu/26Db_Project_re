@@ -12,6 +12,7 @@ public class HomeUI : BaseUI
     [SerializeField] private Button OnoptionButton;
     [SerializeField] private Button ChallengeButton;
     [SerializeField] private Button CustuMizingButton;
+    [SerializeField] private Button StageButton;
     [SerializeField] private Button offOptionButton;
     [SerializeField] private GameObject optionPanel;
     [SerializeField] private Slider bgmSlider;
@@ -20,6 +21,7 @@ public class HomeUI : BaseUI
     [SerializeField] private Button leftButton;
     [SerializeField] private GameObject righSelct;
     [SerializeField] private GameObject leftSelect;
+    [SerializeField] public GameObject stagePanel;
 
 
 
@@ -43,6 +45,7 @@ public class HomeUI : BaseUI
         leftButton.onClick.AddListener(OnClickLeftButton);
         CustuMizingButton.onClick.AddListener(OnClickChallengeButton);
         ChallengeButton.onClick.AddListener(OnClickCustuMizingButton);
+        StageButton.onClick.AddListener(OnClickStagePanel);
 
     }
 
@@ -139,6 +142,12 @@ public class HomeUI : BaseUI
     {
 
         AudioManager.PlayClip(ButtonClip);
+    }
+
+
+    public void OnClickStagePanel()
+    {
+        stagePanel.SetActive(true);
     }
 
 
