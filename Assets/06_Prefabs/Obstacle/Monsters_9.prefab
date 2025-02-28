@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d64daa9488955448d183a389384804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionClip: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
+  collisionClip: {fileID: 8300000, guid: 1ed8fb76fc64e4e46847348138782234, type: 3}
 --- !u!114 &-6887947906991820137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,4 +185,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592a2fc6c1884ba48ae2e342532b6e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
