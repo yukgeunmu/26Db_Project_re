@@ -121,7 +121,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Time.timeScale = 0f;
-            resourceController.gameObject.SetActive(false);
         }
 
         if (resourceController.CurrentHealth <= 0)
@@ -135,7 +134,6 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         uiManager.SetPlayGame();
-        resourceController.gameObject.SetActive(true);
         isTime = true;
 
         switch(stageType)

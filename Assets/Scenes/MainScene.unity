@@ -2190,6 +2190,10 @@ PrefabInstance:
       propertyPath: maxTerminalVelocity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1732287993489441396, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2056153214086002316, guid: 5e5d15bf8c7e3f7419227d838bbebfa0, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -2561,6 +2565,10 @@ PrefabInstance:
     - target: {fileID: 5672988501883837916, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -181
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212906381339986585, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7123622073523462987, guid: 66e78596e26a836499aaa7f40e5d782d, type: 3}
       propertyPath: m_AnchorMax.x
