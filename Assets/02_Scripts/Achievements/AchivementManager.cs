@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AchivementManager : MonoBehaviour
 {
-    public CoinRelatedAchivements coinRelatedAchivements {get; private set;}
+    public ScoreRelatedAchivements coinRelatedAchivements {get; private set;}
 
     private void Start()
     {
